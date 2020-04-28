@@ -1,0 +1,11 @@
+---
+---
+
+$section-headings-color: #594a5e !default;
+
+@import "{{ site.theme }}";
+
+.page-header {
+  background-image: url("starry_sky.jpeg");
+}
+
