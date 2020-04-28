@@ -32,16 +32,15 @@ Observatories can:
 
 # Projects under the Observatory Control System
 
-Conceptually, the Observatory Control System has three main categories: request
-and observation management, observation scheduling, and the science archive. An observatory
-that adopts this software has the option to use all of the parts, or only a subset of them.
-Specifically, the projects that make up the software are:
+The Observatory Control System software provides for request and observation management, observation 
+scheduling, and a science archive. An observatory that adopts this software has the option to use all 
+of the parts, or only a subset of them. Specifically, the projects that make up the software are:
 
 ### Observation Portal
 
-This Django application is the main interface that astronomers interact with to submit and retrieve status updates for
-observation requests. It also stores the observing schedule that is generated from all observation requests by the
-scheduler. It is fully backed by APIs and includes modules for the following:
+This Django application is the main interface that astronomers interact with to submit observation requests and to
+monitor the status of those requests. It also stores the observing schedule that is generated from all observation 
+requests by the scheduler. It is fully backed by APIs and includes modules for the following:
 
 <dl>
   <dt>Proposal management</dt>
@@ -158,4 +157,6 @@ following in their footsteps.
 
 # Questions?
 
-_This project is funded by the Heising-Simons Foundation._
+You can reach out us at [ocs@lco.global](mailto:ocs@lco.global).
+
+_The Open Source Observatory Control System Project is managed by Las Cumbres Observatory, with generous financial support from the [Heising-Simons Foundation](https://www.hsfoundation.org/)._
