@@ -96,7 +96,7 @@ stored in a database for easy querying and full image data are stored in AWS s3 
 
 This Python library aids in uploading data to the science archive.
 
-# Project conventions
+# Project Conventions
 
 All projects will follow clear conventions for consistency. Automated checks will be set up
 to enforce these conventions by preventing code that is in violation from being incorporated
