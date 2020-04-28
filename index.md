@@ -6,10 +6,10 @@ With the field of astronomy undergoing a revolution in data volume and automatio
 around the world are beginning to update their systems to take advantage of modern web technologies.
 However, producing a fully-featured and maintainable Observatory Control System is an expensive undertaking!
 
-A major strength of open source software is not having to reinvent the wheel. 
-Las Cumbres Observatory successfully operates a network of 
+A major strength of open source software is not having to reinvent the wheel.
+Las Cumbres Observatory successfully operates a network of
 20+ robotic telescopes around the world, driven entirely by APIs. Parts of the software that enable this are already
-open source, with the rest of it to follow suit beginning mid-2020. The goal is to increase 
+open source, with the rest of it to follow suit beginning mid-2020. The goal is to increase
 the rate of adoption of APIs in astronomical observing, and to share the knowledge gained in the process of building the software so that the entire community benefits.
 
 **So, what does an API-driven Observatory Control System accomplish?**
@@ -33,46 +33,46 @@ Observatories can:
 # Projects under the Observatory Control System
 
 Conceptually, the Observatory Control System has three main categories: request
-and observation management, observation scheduling, and the science archive. An observatory 
-that adopts this software has the option to use all of the parts, or only a subset of them. 
+and observation management, observation scheduling, and the science archive. An observatory
+that adopts this software has the option to use all of the parts, or only a subset of them.
 Specifically, the projects that make up the software are:
 
 ### Observation Portal
 
 This Django application is the main interface that astronomers interact with to submit and retrieve status updates for
-observation requests. It also stores the observing schedule that is generated from all observation requests. It is fully backed 
-by APIs and includes modules for the following:
+observation requests. It also stores the observing schedule that is generated from all observation requests by the
+scheduler. It is fully backed by APIs and includes modules for the following:
 
 <dl>
   <dt>Proposal management</dt>
-  <dd>Calls for proposals, accepting applications, proposal creation, 
-  time allocation, and management of proposals</dd>
+  <dd>Calls for proposals, proposal creation, and time allocation</dd>
   <dt>Request management</dt>
-  <dd>Validation, submission, cancellation, and a set of views providing 
-  ancillary information on observation requests</dd>
+  <dd>Observation request validation, submission, and cancellation, and views providing
+  ancillary information about them</dd>
   <dt>Observation management</dt>
-  <dd>Provides the telescope schedule, updates observations, and update 
-  observations requests on observation update</dd>
+  <dd>Store and provide the telescope schedule, update observations, and update
+  observation requests on observation update</dd>
   <dt>User identity management</dt>
-  <dd>Provides Oauth2 authenticated user management that can be 
+  <dd>Provides Oauth2 authenticated user management that can be
   used in other applications</dd>
 </dl>
 
 ### Configuration Database
 
-This Django application stores observatory configuration in a database and provides an 
-API to that configuration, which is needed by the observation portal to perform automatic 
-validation and to calculate estimated request durations. It includes details on the 
+This Django application stores observatory configuration in a database and provides an
+API to get that configuration, which is needed by the observation portal to perform automatic
+validation and to calculate estimated request durations. It includes details on the
 configuration of sites, enclosures, telescopes, instruments, and cameras. The camera configuration has
 customizable sets of modes and optical path elements to support a wide range of
-current and future instrument configurations.
+current and future instrument configurations. The configuration is also used by the scheduler to determine
+available telescopes.
 
 ### Downtime Database
 
 This Django application stores periods of scheduled telescope downtime in a database and provides an API
-to retrieve those periods of downtime. Scheduled downtimes occur for a variety of reasons including maintenance and 
-education use. Downtimes are used in the validation of requests in the observation portal and are also 
-used by the scheduler to schedule around the downtimes.
+to retrieve those periods of downtime. Scheduled downtimes occur for a variety of reasons including maintenance and
+education use. Downtimes are used in the validation of requests in the observation portal and are also
+used by the scheduler to block out time that is not available.
 
 ### Scheduler
 
@@ -89,7 +89,7 @@ on visibility.
 
 ### Science Archive
 
-This Django application provides an API to save and retrieve science data. Certain metadata are 
+This Django application provides an API to save and retrieve science data. Certain metadata are
 stored in a database for easy querying and full image data are stored in AWS s3 for download.
 
 ### Ingester Library
@@ -115,27 +115,27 @@ applied as soon as possible.
 
 ### Testing
 
-The codebases of these projects all have test suites, which are vital for quickly checking that 
-the code works as intended. The projects all have varying degrees of test coverage. Each new 
+The codebases of these projects all have test suites, which are vital for quickly checking that
+the code works as intended. The projects all have varying degrees of test coverage. Each new
 feature or fix should have a test confirming its functionality. An automated check will make sure
 that test coverage does not decrease over time.
 
 Besides running test suites, it is extremely useful for development to be able to
-run a project locally on a development machine. Instructions will be provided for each project on 
+run a project locally on a development machine. Instructions will be provided for each project on
 how to run them locally. In addition, basic helm charts and docker images will be provided for doing so.
 
 ### Releases
 
-New versions of the projects will be released when there is new code available. Versioning 
-of projects will follow the guidelines of [semantic versioning](https://semver.org/). In addition, detailed 
+New versions of the projects will be released when there is new code available. Versioning
+of projects will follow the guidelines of [semantic versioning](https://semver.org/). In addition, detailed
 release notes will be provided on features, fixes, or breaking changes are part of the new release.
 
 ### Documentation
 
 General top-level documentation, which includes things like FAQs, descriptions for
-how the different projects fit together, and usage examples will be made available in a central 
-location. In addition, documentation of public interfaces, which give a more precise definition of 
-how to use the libraries and web APIs, will be generated. Finally, each project will have a README, which 
+how the different projects fit together, and usage examples will be made available in a central
+location. In addition, documentation of public interfaces, which give a more precise definition of
+how to use the libraries and web APIs, will be generated. Finally, each project will have a README, which
 will describe what a project does, why it is useful, how to get started, and where to get more help if needed.
 
 # Community
@@ -150,9 +150,9 @@ participating in the Observatory Control System community, you agree to abide by
 
 ### Support and Contributing
 
-Please see the TOM Toolkit documentation for [Support](https://tom-toolkit.readthedocs.io/en/stable/support.html) and 
-[Contributing](https://tom-toolkit.readthedocs.io/en/stable/contributing.html). The TOM Toolkit 
-has been an active open source project since 2018, also developed and maintained by engineers at Las Cumbres Observatory. 
+Please see the TOM Toolkit documentation for [Support](https://tom-toolkit.readthedocs.io/en/stable/support.html) and
+[Contributing](https://tom-toolkit.readthedocs.io/en/stable/contributing.html). The TOM Toolkit
+has been an active open source project since 2018, also developed and maintained by engineers at Las Cumbres Observatory.
 They have been refining their process so we want to put to good use what they have learned during that time.
 
 # Questions?
