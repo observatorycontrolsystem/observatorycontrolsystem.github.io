@@ -128,7 +128,7 @@ how to run them locally. In addition, basic helm charts and docker images will b
 
 New versions of the projects will be released when there is new code available. Versioning
 of projects will follow the guidelines of [semantic versioning](https://semver.org/). In addition, detailed
-release notes will be provided on features, fixes, or breaking changes are part of the new release.
+release notes will be provided on new features, fixes, or breaking changes.
 
 ### Documentation
 
@@ -151,9 +151,10 @@ participating in the Observatory Control System community, you agree to abide by
 ### Support and Contributing
 
 Please see the TOM Toolkit documentation for [Support](https://tom-toolkit.readthedocs.io/en/stable/support.html) and
-[Contributing](https://tom-toolkit.readthedocs.io/en/stable/contributing.html). The TOM Toolkit
-has been an active open source project since 2018, also developed and maintained by engineers at Las Cumbres Observatory.
-They have been refining their process so we want to put to good use what they have learned during that time.
+[Contributing](https://tom-toolkit.readthedocs.io/en/stable/contributing.html). The TOM Toolkit has been an active open
+source project since 2018, also developed and maintained by engineers at Las Cumbres Observatory. They have refined
+their process, figuring out what works, so we want to put to good use what they have learned during that time by
+following in their footsteps.
 
 # Questions?
 
