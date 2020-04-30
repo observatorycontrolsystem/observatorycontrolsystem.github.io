@@ -77,7 +77,8 @@ used by the scheduler to block out time that is not available.
 
 This Python application creates telescope observing schedules. It gets a set of observation requests
 from the observation portal, computes a schedule, and then saves a set of scheduled observations
-back to the observation portal. It currently uses the GUROBI solver to solve for a schedule.
+back to the observation portal. It currently uses the GUROBI solver to solve for the schedule but will provide
+the option to use an open source solver instead.
 
 ### Rise-Set Library
 
