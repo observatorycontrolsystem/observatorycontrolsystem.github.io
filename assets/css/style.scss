@@ -6,7 +6,15 @@ $section-headings-color: #594a5e !default;
 @import "{{ site.theme }}";
 
 .page-header {
-  background-image: url("starry_sky.jpeg");
+  background-image: url("../images/starry_sky.jpeg");
   background-color: #594a5e;
 }
 
+.logos {
+  text-align: center;
+}
+
+.logo {
+  width: 200px;
+  padding: 15px;
+}
