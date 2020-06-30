@@ -160,6 +160,8 @@ following in their footsteps.
 
 You can reach out to us at [ocs@lco.global](mailto:ocs@lco.global).
 
+{% include github.html %}
+
 _The Open Source Observatory Control System Project is managed by Las Cumbres Observatory, with generous financial support from the Heising-Simons Foundation._
 
 {% include logos.html %}
