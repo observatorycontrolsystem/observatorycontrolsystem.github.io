@@ -1,5 +1,9 @@
 ---
-layout: default
+layout: home
+title: Observatory Control System
+subtitle: Open source software for an API-driven observatory
+cover-img: ["/assets/images/starry_sky.jpeg"]
+css: assets/css/style.css
 ---
 
 With the field of astronomy undergoing a revolution in data volume and automation, many observatories

@@ -1,4 +1,6 @@
-title: Observatory Control System
-description: Open source software for an API-driven observatory
-show_downloads: false
-theme: jekyll-theme-cayman
+theme: beautiful-jekyll-theme
+remote_theme: daattali/beautiful-jekyll
+navbar-links: 
+  Home: "/"
+  API Documentation:
+    - Downtime Database: "/docs/downtime.html"
