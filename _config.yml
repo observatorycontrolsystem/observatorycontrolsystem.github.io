@@ -1,6 +1,6 @@
-theme: beautiful-jekyll-theme
 # Specify remote theme so github pages can load it from the author's repository
 remote_theme: daattali/beautiful-jekyll
+title: Observatory Control System
 navbar-links: 
   Home: "/"
   API Documentation:
