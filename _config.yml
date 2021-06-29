@@ -2,5 +2,5 @@
 remote_theme: chrisrhymes/bulma-clean-theme
 # theme: bulma-clean-theme
 title: Observatory Control System
-baseurl: "/"
-url: "https://eheinrich.github.io/observatorycontrolsystem.github.io/"
+baseurl: "/observatorycontrolsystem.github.io"
+url: "https://eheinrich.github.io"
