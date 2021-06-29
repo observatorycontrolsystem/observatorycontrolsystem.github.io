@@ -1,8 +1,11 @@
 ---
-layout: home
+layout: page
 title: Observatory Control System
 subtitle: Open source software for an API-driven observatory
-cover-img: ["/assets/images/starry_sky.jpeg"]
+show_sidebar: false
+menubar: example_menu
+hide_hero: false
+hero_image: /assets/images/starry_sky.jpeg
 css: assets/css/style.css
 ---
 

@@ -1,0 +1,11 @@
+- label: Table of contents
+  items:
+    - name: Home
+      link: /
+    - name: Components
+      link: /components/
+      items:
+        - name: Observation Portal 
+          link: /components/observation-portal/
+    - name: Getting Started
+      link: /getting-started/

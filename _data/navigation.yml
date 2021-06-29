@@ -1,0 +1,5 @@
+- name: API Documentation
+  link: #
+  dropdown:
+    - name: DowntimeDB
+      link: /api/downtime/
