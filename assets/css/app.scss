@@ -1,8 +1,35 @@
 ---
 ---
-// Update bulma variables here
+// Update bulma variables here https://bulma.io/documentation/customize/variables/
 $primary: #a18eab;
 $link: #bc89d6;
 
 // Import Main CSS file from theme
 @import "main";
+
+.page-header {
+  background-image: url("/assets/images/starry_sky.jpeg");
+  background-color: #594a5e;
+}
+
+.logos {
+  text-align: center;
+}
+
+.logos a {
+  text-decoration: none !important;
+}
+
+.logo {
+  width: 200px;
+  padding: 15px;
+}
+
+.github-info {
+  vertical-align: middle;
+}
+
+.github-info a img {
+  vertical-align: middle;
+  height: 100%;
+}

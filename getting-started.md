@@ -4,7 +4,6 @@ title: Observatory Control System
 show_sidebar: false
 menubar: example_menu
 hide_hero: true
-css: assets/css/style.css
 ---
 
 # Getting Started
