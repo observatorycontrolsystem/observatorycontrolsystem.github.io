@@ -3,9 +3,9 @@
     - name: Home
       link: /
     - name: Components
-      link: /components/
+      link: /components
       items:
         - name: Observation Portal 
-          link: /components/observation-portal/
+          link: /components/observation-portal
     - name: Getting Started
-      link: /getting-started/
+      link: /getting-started

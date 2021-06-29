@@ -5,7 +5,7 @@ subtitle: Open source software for an API-driven observatory
 show_sidebar: false
 menubar: example_menu
 hide_hero: false
-hero_image: /assets/images/starry_sky.jpeg
+hero_image: https://eheinrich.github.io/observatorycontrolsystem.github.io/assets/images/starry_sky.jpeg
 ---
 
 With the field of astronomy undergoing a revolution in data volume and automation, many observatories

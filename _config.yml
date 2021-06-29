@@ -1,4 +1,4 @@
 # Specify remote theme so github pages can load it from the author's repository
 remote_theme: chrisrhymes/bulma-clean-theme
-# theme: bulma-clean-theme
+theme: bulma-clean-theme
 title: Observatory Control System
