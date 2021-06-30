@@ -2,7 +2,7 @@
 layout: page
 title: Observatory Control System
 show_sidebar: false
-menubar: example_menu
+menubar: menu
 hide_hero: true
 ---
 

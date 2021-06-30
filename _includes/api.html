@@ -1,8 +1,33 @@
 <div class="container">
-  <iframe class="is-flex api-frame" src="{{ include.url }}"></iframe>
+  <iframe src="{{ include.url }}"></iframe>
 </div>
 <style>
+  /* Take up the full height of the viewport */
+  html, body {
+    height: 100vh;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  /* Make the main section element grow to the remaining space of the body element */
   .section {
     padding: 0;
+    margin: 0;
+    flex-grow: 1;
+  }
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
+  /* All containers within the main section should be full width */
+  section .container {
+      width: 100%;
+      padding: 0;
+      max-width: none !important;
+  }
+  /* All containers within the main section should be full height */
+  .container, .columns, .content {
+    height: 100%;
   }
 </style>

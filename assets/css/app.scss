@@ -7,11 +7,6 @@ $link: #bc89d6;
 // Import Main CSS file from theme
 @import "main";
 
-.page-header {
-  background-image: url("/assets/images/starry_sky.jpeg");
-  background-color: #594a5e;
-}
-
 .logos {
   text-align: center;
 }
@@ -32,9 +27,4 @@ $link: #bc89d6;
 .github-info a img {
   vertical-align: middle;
   height: 100%;
-}
-
-.api-frame {
-  width: 100%;
-  height: 100vh;
 }
