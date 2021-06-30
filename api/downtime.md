@@ -5,4 +5,4 @@ show_sidebar: false
 hide_hero: true
 ---
 
-{% include api.html url="/assets/html/downtime.html" %}
+{% include api.html url="https://eheinrich.github.io/observatorycontrolsystem.github.io/assets/html/downtime.html" %}
