@@ -5,6 +5,8 @@ subtitle: Open source software for an API-driven observatory
 show_sidebar: false
 menubar: example_menu
 hide_hero: false
+# FIXME: If we go with this theme, fix this image url. For some reason when deployed on github pages it
+# keeps resolving to the wrong url
 hero_image: https://eheinrich.github.io/observatorycontrolsystem.github.io/assets/images/starry_sky.jpeg
 ---
 

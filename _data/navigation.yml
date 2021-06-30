@@ -2,4 +2,4 @@
   link: #
   dropdown:
     - name: DowntimeDB
-      link: /api/downtime/
+      link: /api/downtime
