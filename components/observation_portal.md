@@ -74,11 +74,11 @@ This application handles the proposal submission and review process. Calls for a
 
 ## How to Customize
 
-The [Observation Portal Project](https://github.com/observatorycontrolsystem/observation-portal-project) provides a forkable project that uses the `django_ocs_observation_portal` apps. It supports customization via overwriting any serializer in the project, or overwritting the `as_dict` methods of all the Models which is used for generating API responses.
+The first level of customization comes from the instrument and observatory definations within Configuration Database. By using Generic Modes, Optical Path Elements, and custom validation_schema, a lot of unique validation rules can be added to the Observation Portal without modifying any code. For more advanced customization, the [Observation Portal Project](https://github.com/observatorycontrolsystem/observation-portal-project) provides a forkable project that uses the `django_ocs_observation_portal` apps. It supports customization via overwriting any serializer in the project, or overwritting the `as_dict` methods of all the Models which is used for generating API responses. Environmental variables defined in the [README](https://github.com/observatorycontrolsystem/observation-portal) are used to specify the dotpath of each override class or method.
 
-### Serializer Override
+### Serializer Overrides
 
-The serializers define the validation logic for all the models of the Observation Portal. Any serializer can be overwritten by defining a serializer class that subclasses the corresponding library serializer and overrides any serializer method - usually the `validate` method. Environmental variables defined in the [README](https://github.com/observatorycontrolsystem/observation-portal) are used to specify the dotpath of each serializer override. Here is an example serializer override that enforces that spectrograph instruments must include calibrations with their spectrum.
+The serializers define the validation logic for all the models of the Observation Portal. Any serializer can be overwritten by defining a serializer class that subclasses the corresponding library serializer and overrides any serializer method - usually the `validate` method. Here is an example serializer override that enforces that spectrograph instruments must include calibrations with their spectrum.
 
 ```python
 from rest_framework import serializers
@@ -102,4 +102,17 @@ class MyConfigurationSerializer(RequestSerializer):
             raise serializers.ValidationError(_('SPECTRA instrument observations must include an ARC and LAMP_FLAT in addition to the SPECTRUM'))
         
         return validated_data
+```
+
+### as_dict Overrides
+
+We use `as_dict` methods within the django Models to efficiently serialize our return values for API calls. This circumvents the normal serialization behaviour within the django rest framework serializers, but it greatly speeds up the call, which is important when you have a large number of Requests. Overriding the as_dict method allows you to add fields or non-model data to any API response. The `as_dict` methods can be overwritten in the same way as the serializer classes, by specifying a new dotpath to your custom method in an environment variable. A simple as_dict override example is below.
+
+```python
+from observation_portal.requestgroups.models import requestgroup_as_dict
+
+def my_requestgroup_as_dict(instance):
+    output = requestgroup_as_dict(instance)
+    output['my_new_field'] = 'this is my new field'
+    return output
 ```
