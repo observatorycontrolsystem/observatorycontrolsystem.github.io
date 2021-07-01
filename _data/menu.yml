@@ -8,4 +8,12 @@
       link: /components
       items:
         - name: Observation Portal 
-          link: /components/observation-portal
+          link: /components/observation_portal
+        - name: Configuration Database 
+          link: /components/configuration_database
+        - name: Adaptive Scheduler 
+          link: /components/adaptive_scheduler
+        - name: Science Archive 
+          link: /components/science_archive
+        - name: Downtime Database 
+          link: /components/downtime_database
