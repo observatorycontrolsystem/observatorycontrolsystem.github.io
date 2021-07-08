@@ -7,9 +7,9 @@ menubar: menu
 hide_hero: true
 ---
 
-# Configuration Database (configdb)
+# Configuration Database (Configdb)
 
-This Django application manages details about the observatory's Sites, Enclosures, Telescopes, Instruments, and Cameras. It stores a hierarchical representation of what is available at the observatory, which is used for automatic validation within the other OCS applications. It also contains overheads for different parts of an observation for each instrument, which is used in the Observation Portal to calculate an estimated duration for each request.
+This Django application manages details about the observatory's sites, enclosures, telescopes, instruments, and cameras. It stores a hierarchical representation of what is available at the observatory, which is used for automatic validation within the other OCS applications. It also contains overheads for different parts of an observation for each instrument, which is used in the [Observation Portal]({{ site.baseurl }}{% link components/observation_portal.md %}) to calculate an estimated duration for each request.
 
 ## Structure
 
@@ -18,10 +18,10 @@ This Django application manages details about the observatory's Sites, Enclosure
 - **Site** - The top level of the model. It contains a 3 character site code (often the closest airport code), and lat/lon/timezone information
 - **Enclosure** - A 4 character enclosure code representing a physical enclosure at a site
 - **Telescope** - Contains a 4 character telescope code as well as telescope specific information that aids in calculating target visibility, such as the horizon and hour angle limits and zenith blind spot of the telescope
-- **Instrument** - Specific instance of an **Instrument Type** on a **Telescope**, containing one or more Science Cameras and one Autoguider camera and the current observational state
+- **Instrument** - Specific instance of an **Instrument Type** on a **Telescope**, containing one or more science cameras and one autoguider camera and the current observational state
 - **Instrument Type** - Generically defines a class of instruments on one telescope aperture size. Contains a lot of details about overheads and properties relating to instruments of this type
 - **Instrument Category** - The broad category that this Instrument Type is part of. Usually two categories of Imager and Spectrograph is sufficient to cover most instrument types
-- **Configuration Type** - The description of an allowed *type* for a configuration within an Observation Portal Request. Has some associated properties along with it related to each instrument type
+- **Configuration Type** - The description of an allowed *type* for a configuration within an Observation Portal observation request. Has some associated properties along with it related to each instrument type
 - **Camera** - Specific instance of a **Camera Type** with set of **Optical Elements Groups** associated with it
 - **Camera Type** - The details of a class of cameras, such as their pixel scale and resolution
 - **Optical Element Group** - A grouping of **Optical Element**s of the same type with an optional default and an element change overhead
@@ -35,7 +35,7 @@ In this section we will highlight a few of the generic aspects of the Configurat
 
 ### Generic Modes
 
-The Generic Modes and Generic Mode Groupings allow for defining arbitrary *types* of mode sets, which can assist in custom validation within the Observation Portal by overriding corresponding serializers. The default Generic Mode types used by the base Observation Portal are listed below, but additional types can be added as needed.
+The generic modes and generic mode groupings allow for defining arbitrary *types* of mode sets, which can assist in custom validation within the Observation Portal by overriding corresponding serializers. The default generic mode types used by the base Observation Portal are listed below, but additional types can be added as needed.
 
 | Type | Description |
 | ---- | ----------- |
@@ -46,7 +46,7 @@ The Generic Modes and Generic Mode Groupings allow for defining arbitrary *types
 
 ### Optical Elements
 
-Much like the Generic Mode Groups, the Optical Element Groups allow for defining arbitrary *types* of sets of optical elements for a **Camera**. The optical element groups have an element change overhead that is factored into Request durations, and the elements themselves can be marked as schedulable or not. The intention of generic Optical Elements is to support anything user configurable that is in the optical path of an instrument, such as filters, slits, diffusers, or gratings. They are used for automatic validation for Requests submitted in the Observation Portal.
+Much like the generic mode groups, the optical element groups allow for defining arbitrary *types* of sets of optical elements for a **Camera**. The optical element groups have an element change overhead that is factored into observation request durations, and the elements themselves can be marked as schedulable or not. The intention of generic optical elements is to support anything user configurable that is in the optical path of an instrument, such as filters, slits, diffusers, or gratings. They are used for automatic validation for observation requests submitted in the Observation Portal.
 
 ### Cerberus Validation Schema
 

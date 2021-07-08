@@ -9,15 +9,15 @@ hide_hero: true
 
 # Observation Portal
 
-The Observation Portal is a Django application that manages Users, Proposals, Observation Requests, and Observations, and is the backbone of the Observatory Control System. The Observation Portal is deployed as a pypi library called [django_ocs_observation_portal](https://pypi.org/project/django-ocs-observation-portal/), and contains Django apps for accounts, requests, observations, proposals, and sciapplications.
+The Observation Portal is a Django application that manages users, proposals, observation requests, and scheduled observations, and is the backbone of the Observatory Control System. The Observation Portal is deployed as a PyPI library called [django_ocs_observation_portal](https://pypi.org/project/django-ocs-observation-portal/), and contains Django apps for accounts, requestgroups, observations, proposals, and sciapplications.
 
 ## Django Apps
 
 ### Accounts
 
-This app provides the User accounts that are used for authentication between all OCS applications, using [oauth2](https://django-oauth-toolkit.readthedocs.io/en/latest/). It also provides a Profile model which includes additional account details.
+This app provides the user accounts that are used for authentication between all OCS applications, using [oauth2](https://django-oauth-toolkit.readthedocs.io/en/latest/). It also provides a **Profile** model which includes additional account details.
 
-### Requests
+### RequestGroups
 
 The OCS Request language is designed to be able to support a broad range of observation requests. The models in the diagram below show the hierchary of properties of a RequestGroup.
 ![Request Models](/assets/images/request_models.png)
@@ -26,7 +26,7 @@ The OCS Request language is designed to be able to support a broad range of obse
 - **Request** - A single independent set of observing parameters to be scheduled in one contiguous block on a resource
 - **Location** - A set of restrictions on which resources the Request can be scheduled on
 - **Window** - One or more datetime intervals during which the Request could be observed
-- **Configuration** - A set of observations on a single Target
+- **Configuration** - A set of observations on a single target
 - **Instrument Configuration** - A set of exposures using certain instrument settings
 - **Guiding** - Parameters for the guiding of the observation
 - **Acquisition** - Parameters for the acquisition of the target
@@ -44,7 +44,7 @@ A RequestGroup can be submitted with one of three observation types, described i
 | NORMAL | a normal Request whose priority is just the proposal's base priority multiplied by the `ipp_value` |
 | TIME_CRITICAL | base proposal priority is multiplied by 100. This factor is meant to beat out any NORMAL request, but all TIME_CRITICAL requests of the same priority are treated equally. This type is meant for observations that are coordinated between multiple observatories, or just have an extremely high priority |
 | RAPID_RESPONSE | These requests bypass normal scheduling and have their own scheduling loop that can pre-empt any non-RAPID_RESPONSE observation that is currently in progress. All requests of this type with the same base proposal priority are treated equally. These observation_types are very disruptive to the schedule, so they should only be used for observations that truly must begin immediately |
-| DIRECT | a Request of this type is created when a directly submitted Observation is created to store the details of that observing request. These should only be submitted outside of the normal scheduling range of time or set of instruments, or during a scheduled period of downtime, so that they don't interfere with the scheduling of other observations |
+| DIRECT | a request of this type is created when a directly submitted observation is created to store the details of that observing request. These should only be submitted outside of the normal scheduling range of time or set of instruments, or during a scheduled period of downtime, so that they don't interfere with the scheduling of other observations |
 
 #### Extra Params
 
@@ -52,10 +52,10 @@ Most of the levels of a RequestGroup have a JSON field called `extra_params` whi
 
 ### Observations
 
-The observations app deals with scheduled or directly submitted observations. An Observation is a scheduled Request, or a Request plus information about status, where the observation is scheduled, and when. The hierarchy of an Observation is shown below, but it is very similar to that of the Request except with a few additional pieces of information tacked on.
+The observations app deals with scheduled or directly submitted observations. An Observation is a scheduled request, or a request plus information about status, where the observation is scheduled, and when. The hierarchy of an Observation is shown below, but it is very similar to that of the Request except with a few additional pieces of information tacked on.
 ![Observation Models](/assets/images/observation_models.png)
 
-- **Observation** - The top level of a Scheduled Request, this contains the *where* and *when* information,
+- **Observation** - The top level of a scheduled Request, this contains the *where* and *when* information,
 as well as some of the RequestGroup fields that the telescope control software might want to include in the observation's data products
 - **Configuration Status** - This structure contains status information about a single Configuration of the Request.
 Observatory software is expected to report back status per Configuration in real time as it is attempted and completed.
@@ -65,17 +65,17 @@ Observations can be scheduled directly through the `/api/schedule/` endpoint, wh
 
 ### Proposals
 
-Proposals are an essential part of the Observation Portal for authenticating who is allowed to submit observation requests and on what resource. Proposals can have one or more Principle Investigators (PIs) and any number of Co-Investigators (COIs) assigned to them. They can have any number of Time Allocations associated with them for any number of observing Semesters. The book keeping for the different types of time allocated to each proposal is handled automatically within the Observation Portal as Requests are submitted and cancelled and Observations are completed and updated. Proposals also contain a numerical priority, which is used when scheduling with the [Adaptive Scheduler]({{ site.baseurl }}{% link components/adaptive_scheduler.md %}) as part of the optimizations objective function.
+Proposals are an essential part of the Observation Portal for authenticating who is allowed to submit observation requests and on what resource. Proposals can have one or more Principle Investigators (PIs) and any number of Co-Investigators (COIs) assigned to them. They can have any number of Time Allocations associated with them for any number of observing Semesters. The book keeping for the different types of time allocated to each proposal is handled automatically within the Observation Portal as observation requests are submitted and cancelled and scheduled observations are completed and updated. Proposals also contain a numerical priority, which is used when scheduling with the [Adaptive Scheduler]({{ site.baseurl }}{% link components/adaptive_scheduler.md %}) as part of the optimizations objective function.
 
-Proposals are currently added to the system in one of two ways - either through the Django admin interface, or by generating them via the Science Application process in the sciapplications app.
+Proposals are currently added to the system in one of two ways - either through the Django admin interface, or by generating them via the science application process in the sciapplications app.
 
 ### Sciapplications
 
-This Django app handles the proposal submission and review process. Calls for science applications can be created via the admin interface, and eligible users can submit science applications via the API for consideration. After review, the accepted science applications can be automatically converted into Proposals with time allocations for the coming observing semester. This application can be completely ignored by observatories with existing proposal submission and time allocation processes - they can instead opt to just input the final proposals into the system.
+This Django app handles the proposal submission and review process. Calls for science applications can be created via the admin interface, and eligible users can submit science applications via the API for consideration. After review, the accepted science applications can be automatically converted into proposals with time allocations for the coming observing semester. This application can be completely ignored by observatories with existing proposal submission and time allocation processes - they can instead opt to just input the final proposals into the system.
 
 ## How to Customize
 
-The first level of customization comes from the instrument and observatory definitions within Configuration Database. By using Generic Modes, Optical Path Elements, and custom validation_schema, a lot of unique validation rules can be added to the Observation Portal without modifying any code. For more advanced customization, the [Observation Portal Project](https://github.com/observatorycontrolsystem/observation-portal-project) provides a forkable project that uses the `django_ocs_observation_portal` apps. It supports customization via overriding any serializer in the project, or overriding the `as_dict` methods of Models which are used for generating API responses. Environmental variables defined in the [README](https://github.com/observatorycontrolsystem/observation-portal) are used to specify the dotpath of each override class or method.
+The first level of customization comes from the instrument and observatory definitions within Configuration Database. By using generic modes, optical path elements, and custom validation_schema, a lot of unique validation rules can be added to the Observation Portal without modifying any code. For more advanced customization, the [Observation Portal Project](https://github.com/observatorycontrolsystem/observation-portal-project) provides a forkable project that uses the `django_ocs_observation_portal` apps. It supports customization via overriding any serializer in the project, or overriding the `as_dict` methods of models which are used for generating API responses. Environmental variables defined in the [README](https://github.com/observatorycontrolsystem/observation-portal) are used to specify the dotpath of each overridden class or method.
 
 ### Serializer Overrides
 
@@ -107,7 +107,7 @@ class MyRequestSerializer(RequestSerializer):
 
 ### as_dict Overrides
 
-We use `as_dict` methods within the Django Models to efficiently serialize return values for API calls. This circumvents the normal serialization behaviour within the [Django Rest Framework Serializers](https://www.django-rest-framework.org/api-guide/serializers/), but it greatly speeds up the call, which is important when you have a large number of Requests. Overriding the as_dict method allows you to add fields or non-model data to any API response. The `as_dict` methods can be overridden in the same way as the serializer classes, by specifying a new dotpath to your custom method in an environment variable. A simple as_dict override example is below.
+We use `as_dict` methods within the Django models to efficiently serialize return values for API calls. This circumvents the normal serialization behaviour within the [Django Rest Framework Serializers](https://www.django-rest-framework.org/api-guide/serializers/), but it greatly speeds up the call, which is important when you have a large number of observation requests. Overriding the as_dict method allows you to add fields or non-model data to any API response. The `as_dict` methods can be overridden in the same way as the serializer classes, by specifying a new dotpath to your custom method in an environment variable. A simple as_dict override example is below.
 
 ```python
 from observation_portal.requestgroups.models import requestgroup_as_dict
