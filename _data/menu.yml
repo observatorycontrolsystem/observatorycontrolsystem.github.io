@@ -1,9 +1,7 @@
 - label: Table of contents
   items:
-    - name: About
+    - name: Home
       link: /
-    - name: Getting Started
-      link: /getting-started
     - name: Components
       link: /components
       items:
@@ -17,3 +15,10 @@
           link: /components/science_archive
         - name: Downtime Database 
           link: /components/downtime_database
+    - name: Getting Started
+      link: /getting-started
+    - name: Topics of Interest
+      link: /topics
+      items:
+        - name: Deployment
+          link: /topics/deployment
