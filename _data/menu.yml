@@ -1,6 +1,6 @@
 - label: Table of contents
   items:
-    - name: About
+    - name: Home
       link: /
     - name: Getting Started
       link: /getting-started
@@ -9,3 +9,8 @@
       items:
         - name: Observation Portal 
           link: /components/observation-portal
+    - name: Topics of Interest
+      link: /topics
+      items:
+        - name: Deployment
+          link: /topics/deployment
