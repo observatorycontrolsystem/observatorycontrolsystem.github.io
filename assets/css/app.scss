@@ -1,0 +1,8 @@
+---
+---
+// Update bulma variables here https://bulma.io/documentation/customize/variables/
+$primary: #3d233f;
+$link: scale-color($primary, $lightness: 60%);
+
+// Import Main CSS file from theme
+@import "main";

@@ -1,7 +1,29 @@
 # Specify remote theme so github pages can load it from the author's repository
-remote_theme: daattali/beautiful-jekyll
+remote_theme: chrisrhymes/bulma-clean-theme
 title: Observatory Control System
-navbar-links: 
-  Home: "/"
-  API Documentation:
-    - Downtime Database: "/docs/downtime.html"
+# Format all site urls consistently
+permalink: /:categories/:title/
+favicon: /assets/images/favicon.png
+defaults:
+  -
+    scope:
+      path: "" # These defaults will apply to all pages
+      type: pages
+    values:
+      hide_footer: true
+      show_sidebar: false
+      hide_hero: true
+      menubar: menu
+  -
+    scope:
+      path: "index.md"
+      type: pages
+    values:
+      hide_hero: false
+      hero_image: /assets/images/starry_sky.jpeg
+  -
+    scope:
+      path: "api"
+      type: pages
+    values:
+      menubar: false
