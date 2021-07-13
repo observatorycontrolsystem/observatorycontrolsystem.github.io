@@ -19,7 +19,7 @@
         - name: Downtime Database 
           link: /components/downtime_database/
     - name: Getting Started
-      link: /getting-started/
+      link: /getting_started/
     - name: Topics of Interest
       link: /topics/
       items:

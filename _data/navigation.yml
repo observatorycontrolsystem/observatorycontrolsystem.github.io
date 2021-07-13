@@ -6,4 +6,4 @@
     - name: Ingester Library
       link: /api/ingester/
     - name: Rise-Set Library
-      link: /api/rise-set/
+      link: /api/rise_set/
