@@ -1,6 +1,8 @@
 - name: API Documentation
   link: /api/
   dropdown:
+    - name: Configuration Database
+      link: /api/configdb/
     - name: Downtime Database
       link: /api/downtime/
     - name: Ingester Library
