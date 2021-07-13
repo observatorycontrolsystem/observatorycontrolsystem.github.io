@@ -8,6 +8,7 @@ defaults:
   -
     scope:
       path: "" # These defaults will apply to all pages
+      type: pages
     values:
       hide_footer: true
       show_sidebar: false
@@ -16,11 +17,13 @@ defaults:
   -
     scope:
       path: "index.md"
+      type: pages
     values:
       hide_hero: false
       hero_image: /assets/images/starry_sky.jpeg
   -
     scope:
       path: "api"
+      type: pages
     values:
       menubar: false
