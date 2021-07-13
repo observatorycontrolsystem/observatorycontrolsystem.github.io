@@ -2,9 +2,6 @@
 layout: page
 title: Downtime Database
 subtitle: Django application that manages periods of downtime on telescopes and instrument types
-show_sidebar: false
-menubar: menu
-hide_hero: true
 ---
 
 # Downtime Database

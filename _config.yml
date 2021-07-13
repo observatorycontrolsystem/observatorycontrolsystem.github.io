@@ -3,3 +3,26 @@ remote_theme: chrisrhymes/bulma-clean-theme
 title: Observatory Control System
 # Format all site urls consistently
 permalink: /:categories/:title/
+favicon: /assets/images/favicon.png
+defaults:
+  -
+    scope:
+      path: "" # These defaults will apply to all pages
+    values:
+      hide_footer: true
+      show_sidebar: false
+      hide_hero: true
+      menubar: menu
+  -
+    scope:
+      path: "index.md"
+    values:
+      hide_hero: false
+      # FIXME: If we go with this theme, fix this image url. For some reason when deployed on github pages it
+      # keeps resolving to the wrong url
+      hero_image: https://eheinrich.github.io/observatorycontrolsystem.github.io/assets/images/starry_sky.jpeg
+  -
+    scope:
+      path: "api"
+    values:
+      menubar: false

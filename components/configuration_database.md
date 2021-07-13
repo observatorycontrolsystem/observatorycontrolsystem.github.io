@@ -2,9 +2,6 @@
 layout: page
 title: Configuration Database
 subtitle: Django Application that manages Sites, Enclosures, Telescopes, Instruments, and Camera properties
-show_sidebar: false
-menubar: menu
-hide_hero: true
 ---
 
 # Configuration Database (ConfigDB)

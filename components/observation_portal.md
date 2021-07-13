@@ -2,9 +2,6 @@
 layout: page
 title: Observation Portal
 subtitle: Django Application that manages Users, Proposals, Requests, and Observations
-show_sidebar: false
-menubar: menu
-hide_hero: true
 ---
 
 # Observation Portal

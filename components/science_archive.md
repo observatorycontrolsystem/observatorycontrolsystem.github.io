@@ -2,11 +2,7 @@
 layout: page
 title: Science Archive
 subtitle: Django Application that manages Data products that are stored in AWS S3 buckets
-show_sidebar: false
-menubar: menu
-hide_hero: true
 ---
-
 
 # Science Archive
 

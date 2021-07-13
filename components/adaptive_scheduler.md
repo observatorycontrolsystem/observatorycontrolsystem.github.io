@@ -2,9 +2,6 @@
 layout: page
 title: Adaptive Scheduler
 subtitle: Python script that manages scheduling requests into observations.
-show_sidebar: false
-menubar: menu
-hide_hero: true
 ---
 
 # Adaptive Scheduler

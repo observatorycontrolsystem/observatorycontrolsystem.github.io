@@ -1,9 +1,6 @@
 ---
 layout: page
 title: Components
-show_sidebar: false
-menubar: menu
-hide_hero: true
 ---
 
 # Components

@@ -1,9 +1,6 @@
 ---
 layout: page
 title: Getting Started
-show_sidebar: false
-menubar: menu
-hide_hero: true
 ---
 
 # Getting Started

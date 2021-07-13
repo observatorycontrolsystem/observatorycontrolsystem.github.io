@@ -1,9 +1,6 @@
 ---
 layout: page
 title: Contributing
-show_sidebar: false
-menubar: menu
-hide_hero: true
 # TODO: Publish this page when it is finalized, adding a link for it to the menubar
 published: false
 ---
