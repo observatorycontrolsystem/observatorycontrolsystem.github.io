@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Observatory Control System - Getting Started
+title: Getting Started
 show_sidebar: false
 menubar: menu
 hide_hero: true

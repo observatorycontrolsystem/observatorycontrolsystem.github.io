@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Observatory Control System
+title: API Documentation
 show_sidebar: false
 hide_hero: true
 hide_footer: true

@@ -1,5 +1,9 @@
 - name: API Documentation
   link: /api/
   dropdown:
-    - name: DowntimeDB
+    - name: Downtime Database
       link: /api/downtime/
+    - name: Ingester Library
+      link: /api/ingester/
+    - name: Rise-Set Library
+      link: /api/rise-set/

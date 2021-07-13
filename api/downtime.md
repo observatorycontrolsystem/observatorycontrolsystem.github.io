@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Observatory Control System
+title: Downtime Database API
 show_sidebar: false
 hide_hero: true
 hide_footer: true

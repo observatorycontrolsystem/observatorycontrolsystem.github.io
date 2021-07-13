@@ -18,7 +18,7 @@ by APIs. The software that enables this has been bundled up and open-sourced, th
 the rate of adoption of APIs in astronomical observing and to share the knowledge gained in the process of building
 the software so that the entire community benefits.
 
-**What does an API-driven Observatory Control System accomplish?**
+#### What does an API-driven Observatory Control System accomplish?
 
 Astronomers can:
 
@@ -34,11 +34,11 @@ Observatories can:
 * Update the states of requests to keep users in the loop and to keep track of what still needs to be done
 * Manage users who are able to submit requests
 
-**Since these actions are all backed by APIs, they can be triggered programmatically and can easily be incorported into other web interfaces and software systems.**
+Since these actions are all backed by APIs, they can be triggered programmatically and can easily be incorported into other web interfaces and software systems.
 
-See the [Getting Started]({% link getting-started.md %}) guide for details on how to begin using the OCS.
+See the [Components]({% link components/index.md %}) section for more information about the different components of the OCS, and the [Getting Started]({% link getting-started.md %}) guide for details on how to begin using it.
 
-# Questions?
+#### Questions?
 
 You can reach out to us at [ocs@lco.global](mailto:ocs@lco.global).
 
