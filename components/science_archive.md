@@ -10,7 +10,7 @@ hide_hero: true
 
 # Science Archive
 
-This Django application manages the observatory's data products, and references the raw data products which are stored in AWS S3. It features a REST API for retrieving metadata and download links for data products, and also for submitting metadata and data products for upload to S3. For the complete list of filterable FITS header values, check out the [API specification]({{ site.baseurl }}{% link api/downtime.md %}).
+This Django application manages the observatory's data products, and references the raw data products which are stored in AWS S3. It features a REST API for retrieving metadata and download links for data products, and also for submitting metadata and data products for upload to S3. For the complete list of filterable FITS header values, check out the [API specification]({% link api/downtime.md %}).
 
 ## Ingester Library
 

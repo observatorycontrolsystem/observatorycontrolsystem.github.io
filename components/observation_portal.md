@@ -33,7 +33,7 @@ The OCS Request language is designed to be able to support a broad range of obse
 - **Constraints** - A set of observing constraints that must be met to schedule the observation
 - **Target** - The parameters describing the target, supporting ICRS, orbital elements, hour angle, or satellite coordinates
 
-More information about the specific fields expected in each section of the RequestGroup can be found in the [API specification]({{ site.baseurl }}{% link api/downtime.md %}). Most fields have their values validated automatically from the acceptable values defined in the [Configuration Database (Configdb)]({{ site.baseurl }}{% link components/configuration_database.md %}). There are several areas of the configuration which allow for user defined instrument properties that will be validated automatically, including things like modes and optical path elements.
+More information about the specific fields expected in each section of the RequestGroup can be found in the [API specification]({% link api/downtime.md %}). Most fields have their values validated automatically from the acceptable values defined in the [Configuration Database (Configdb)]({% link components/configuration_database.md %}). There are several areas of the configuration which allow for user defined instrument properties that will be validated automatically, including things like modes and optical path elements.
 
 #### Observation Type
 
@@ -65,7 +65,7 @@ Observations can be scheduled directly through the `/api/schedule/` endpoint, wh
 
 ### Proposals
 
-Proposals are an essential part of the Observation Portal for authenticating who is allowed to submit observation requests and on what resource. Proposals can have one or more Principle Investigators (PIs) and any number of Co-Investigators (COIs) assigned to them. They can have any number of Time Allocations associated with them for any number of observing Semesters. The book keeping for the different types of time allocated to each proposal is handled automatically within the Observation Portal as observation requests are submitted and cancelled and scheduled observations are completed and updated. Proposals also contain a numerical priority, which is used when scheduling with the [Adaptive Scheduler]({{ site.baseurl }}{% link components/adaptive_scheduler.md %}) as part of the optimizations objective function.
+Proposals are an essential part of the Observation Portal for authenticating who is allowed to submit observation requests and on what resource. Proposals can have one or more Principle Investigators (PIs) and any number of Co-Investigators (COIs) assigned to them. They can have any number of Time Allocations associated with them for any number of observing Semesters. The book keeping for the different types of time allocated to each proposal is handled automatically within the Observation Portal as observation requests are submitted and cancelled and scheduled observations are completed and updated. Proposals also contain a numerical priority, which is used when scheduling with the [Adaptive Scheduler]({% link components/adaptive_scheduler.md %}) as part of the optimizations objective function.
 
 Proposals are currently added to the system in one of two ways - either through the Django admin interface, or by generating them via the science application process in the sciapplications app.
 

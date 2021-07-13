@@ -1,24 +1,27 @@
+# The links must match the permalinks that are generated for each page so that
+# active links are highlighted correctly
+# https://github.com/chrisrhymes/bulma-clean-theme#creating-a-menubar-data-file
 - label: Table of contents
   items:
     - name: Home
       link: /
     - name: Components
-      link: /components
+      link: /components/
       items:
         - name: Observation Portal 
-          link: /components/observation_portal
-        - name: Configuration Database 
-          link: /components/configuration_database
+          link: /components/observation_portal/
+        - name: Configuration Database
+          link: /components/configuration_database/
         - name: Adaptive Scheduler 
-          link: /components/adaptive_scheduler
+          link: /components/adaptive_scheduler/
         - name: Science Archive 
-          link: /components/science_archive
+          link: /components/science_archive/
         - name: Downtime Database 
-          link: /components/downtime_database
+          link: /components/downtime_database/
     - name: Getting Started
-      link: /getting-started
+      link: /getting-started/
     - name: Topics of Interest
-      link: /topics
+      link: /topics/
       items:
         - name: Deployment
-          link: /topics/deployment
+          link: /topics/deployment/

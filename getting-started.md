@@ -1,12 +1,10 @@
 ---
 layout: page
-title: Observatory Control System
+title: Observatory Control System - Getting Started
 show_sidebar: false
 menubar: menu
 hide_hero: true
 ---
-
-<!-- TODO: Once the components pages are merged into this branch, update all the links in this page -->
 
 # Getting Started
 
@@ -14,7 +12,7 @@ The Observatory Control System (OCS) provides an interface that allows astronome
 
 There are many different ways to run the projects that are part of the OCS. The simplest way to get up and running and to start evaluating it for your own purposes is the run the [OCS example project](https://github.com/observatorycontrolsystem/ocs_example).
 
-The OCS example project contains a Docker Compose file which starts up an [Observation Portal]({{ site.baseurl }}{% link components/index.md %}), [ConfigDB]({{ site.baseurl }}{% link components/index.md %}), [DowntimeDB]({{ site.baseurl }}{% link components/index.md %}), and [Science Archive]({{ site.baseurl }}{% link components/index.md %}), which all provide web APIs to programmatically interact with them. It also starts up an [Adaptive Scheduler]({{ site.baseurl }}{% link components/index.md %}), which runs continuously to create observing schedules from all the schedulable observing requests in the system. A simple web frontend for the Observation Portal is also provided. The OCS example project ties all these components together so that you get a functioning OCS stack.
+The OCS example project contains a Docker Compose file which starts up an [Observation Portal]({% link components/observation_portal.md %}), [ConfigDB]({% link components/configuration_database.md %}), [DowntimeDB]({% link components/downtime_database.md %}), and [Science Archive]({% link components/science_archive.md %}), which all provide web APIs to programmatically interact with them. It also starts up an [Adaptive Scheduler]({% link components/adaptive_scheduler.md %}), which runs continuously to create observing schedules from all the schedulable observing requests in the system. A simple web frontend for the Observation Portal is also provided. The OCS example project ties all these components together so that you get a functioning OCS stack.
 
 The example project is configured to pre-populate its database with example data on startup. These example data include test administrator user accounts that can be used to interact with and update the state of the system, a ConfigDB resource that is configured to be available for observing, downtime slots in the Downtime Database to illustrate how to block out periods of scheduled downtime on a telescope or instrument, and also an observing semester, proposal, and a few example observation requests that the Adaptive Scheduler can turn into an observing schedule. See [here](https://github.com/observatorycontrolsystem/ocs_example#example-data) for more information on how this example data is generated.
 
@@ -56,6 +54,6 @@ Once you've gotten a feel for the OCS, here are some ways you can expand the cap
 
 ## Next steps
 
-To learn more about OCS capabilities and how to use it, you can take a look through the [OCS Observation Portal]({{ site.baseurl }}{% link components/index.md %}) observing request language documentation to understand how you can use the language to describe your observatory's observing capabilities. You can also take a look at the observatory configuration in the [OCS ConfigDB]({{ site.baseurl }}{% link components/index.md %}) to understand how you can model the resources in your own observatory. Beyond that, browsing the [Components]({{ site.baseurl }}{% link components/index.md %}) section will give you a better idea of the purpose of all the components of the OCS and how they work together, taking a look through different [Topics of Interest]({{ site.baseurl }}{% link topics/index.md %}) sections might help answer some more specific questions, and taking a look through the [API documentation]({{ site.baseurl }}{% link api/index.md %}) of the different projects will show you how to use the OCS APIs.
+To learn more about OCS capabilities and how to use it, you can take a look through the [Observation Portal]({% link components/observation_portal.md %}) observing request language documentation to understand how you can use the language to describe your observatory's observing capabilities. You can also take a look at the observatory configuration in the [ConfigDB]({% link components/configuration_database.md %}) to understand how you can model the resources in your own observatory. Beyond that, browsing the [Components]({% link components/index.md %}) section will give you a better idea of the purpose of all the components of the OCS and how they work together, taking a look through different [Topics of Interest]({% link topics/index.md %}) sections might help answer some more specific questions, and taking a look through the [API documentation]({% link api/index.md %}) of the different projects will show you how to use the OCS APIs.
 
-Once you are at the point where you would like to run these projects in production, or would perhaps like to run these projects locally but in such a way where your data persists across restarts, you can take a look at the [Deployment]({{ site.baseurl }}{% link topics/deployment.md %}) section.
+Once you are at the point where you would like to run these projects in production, or would perhaps like to run these projects locally but in such a way where your data persists across restarts, you can take a look at the [Deployment]({% link topics/deployment.md %}) section.

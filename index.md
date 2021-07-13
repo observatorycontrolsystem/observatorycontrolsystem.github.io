@@ -36,7 +36,7 @@ Observatories can:
 
 **Since these actions are all backed by APIs, they can be triggered programmatically and can easily be incorported into other web interfaces and software systems.**
 
-See the [Getting Started]({{ site.baseurl }}{% link getting-started.md %}) guide for details on how to begin using the OCS.
+See the [Getting Started]({% link getting-started.md %}) guide for details on how to begin using the OCS.
 
 # Questions?
 

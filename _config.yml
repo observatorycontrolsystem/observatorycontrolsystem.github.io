@@ -1,3 +1,5 @@
 # Specify remote theme so github pages can load it from the author's repository
 remote_theme: chrisrhymes/bulma-clean-theme
 title: Observatory Control System
+# Format all site urls consistently
+permalink: /:categories/:title/

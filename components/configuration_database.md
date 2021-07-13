@@ -7,13 +7,13 @@ menubar: menu
 hide_hero: true
 ---
 
-# Configuration Database (Configdb)
+# Configuration Database (ConfigDB)
 
-This Django application manages details about the observatory's sites, enclosures, telescopes, instruments, and cameras. It stores a hierarchical representation of what is available at the observatory, which is used for automatic validation within the other OCS applications. It also contains overheads for different parts of an observation for each instrument, which is used in the [Observation Portal]({{ site.baseurl }}{% link components/observation_portal.md %}) to calculate an estimated duration for each request.
+This Django application manages details about the observatory's sites, enclosures, telescopes, instruments, and cameras. It stores a hierarchical representation of what is available at the observatory, which is used for automatic validation within the other OCS applications. It also contains overheads for different parts of an observation for each instrument, which is used in the [Observation Portal]({% link components/observation_portal.md %}) to calculate an estimated duration for each request.
 
 ## Structure
 
-![Configdb Models](/assets/images/configdb_models.png)
+![ConfigDB Models](/assets/images/configdb_models.png)
 
 - **Site** - The top level of the model. It contains a 3 character site code (often the closest airport code), and lat/lon/timezone information
 - **Enclosure** - A 4 character enclosure code representing a physical enclosure at a site
