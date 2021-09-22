@@ -1,6 +1,8 @@
 - name: API Documentation
   link: /api/
   dropdown:
+    - name: Observation Portal
+      link: /api/observation_portal
     - name: Configuration Database
       link: /api/configdb/
     - name: Downtime Database
