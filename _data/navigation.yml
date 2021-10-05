@@ -5,6 +5,8 @@
       link: /api/observation_portal
     - name: Configuration Database
       link: /api/configdb/
+    - name: Science Archive
+      link: /api/science_archive
     - name: Downtime Database
       link: /api/downtime/
     - name: Ingester Library
