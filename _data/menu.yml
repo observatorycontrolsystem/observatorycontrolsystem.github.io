@@ -25,8 +25,8 @@
       items:
         - name: Local Network Deployment
           link: /deployment/local_deployment/
-        - name: Cloud Deployment
-          link: /deployment/cloud_deployment/
+        - name: Kubernetes Deployment
+          link: /deployment/k8s_deployment/
         - name: ConfigDB Setup
           link: /deployment/configdb_setup/
         - name: Observation Portal Setup

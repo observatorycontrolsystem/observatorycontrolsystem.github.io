@@ -5,31 +5,39 @@ title: Local Deployment
 
 # Local or Network Deployment
 
-This page will give some instructions on how to run the OCS applications in a production environment on one or more servers connected through a local network. If you are interested in a persistant, high availability cloud deployment procedure, check out the [Cloud Deployment]({% link deployment/cloud_deployment.md %}) section.
+This page will give some instructions on how to run the OCS applications in a production environment on one or more servers connected through a local network. If you are interested in a persistent, high availability cloud deployment procedure, check out the [Kubernetes Deployment]({% link deployment/k8s_deployment.md %}) section.
 
 ## Database Setup
 
-Most of the OCS application depend on a postgresQL database (with the postGIS plugin installed for the Science Archive). You can share the same postgres instance with all the applications, they will just each need their own database created, but they could share credentials for simplicity. Your options for running postgres are:
+Most of the OCS applications depend on a postgreSQL database. The Science Archive additionally requires the postGIS plugin to be installed in its postgreSQL database. It is possible to use the same postgreSQL instance across all the applications for a simpler setup, they will just each need their own database created. Your options for running postgreSQL are:
 
-* Use an existing postgres instance on your local network
-* Install postgres locally on your machine
-* Run a postgres/postgis docker container
+* Use an existing postgreSQL instance on your local network
+* Install postgreSQL locally on your machine
+* Run a postgreSQL docker container with postGIS installed
 
-To start a postgresQL instance with postgis on a machine with docker forwarding it's port 5432 for local usage, you can use:
+To start a postgreSQL instance with postGIS on a machine with docker forwarding its port 5432 for local usage, you can use:
 
 ```bash
 docker run --name ocs-postgis -p 0.0.0.0:5432:5432 -e POSTGRES_PASSWORD=postgres -d postgis/postgis
 ```
 
-{% include notification.html message="By default, postgresQL within a docker container will store it's data in the docker containers filesystem. If you want to persist the database, should should either create a docker volume or volume mount the postgres data directory in the container to a folder on your local filesystem when you start the container." %}
+{% include notification.html message="By default, postgreSQL within a docker container will store its data in the docker container's filesystem. If you want to persist the database, should should either create a docker volume or volume mount the postgreSQL data directory in the container to a folder on your local filesystem when you start the container. Check out the [docker docs](https://docs.docker.com/storage/volumes/) for more information." %}
 
-After you have a postgres instance running that you can connect to with a username/password (Assuming postgres/postgres here, change as needed), create a db for each OCS application you will use:
+After you have a postgreSQL instance running that you can connect to with a username and password, create a database for each OCS application you will use. These instructions assume the username and password are both set to the value `postgres`:
 
 ```bash
 createdb --host 0.0.0.0 -p5432 -Upostgres -W my_db_name
 ```
 
-The docker-compose templates within each OCS application should then be modified to set the proper environment variables to point to your database. Note you should change the DB name, user/password, and host/port to the proper values for your setup:
+## Docker-Compose Templates
+
+The preferred way to run each OCS application is using Docker. This way, you do not need to worry about installing the proper dependencies, or debugging strange interactions on your specific system. Template docker-compose.yaml files are provided within each OCS application repo to help getting setup to run the application in production. The docker-compose files should be setup in the repo to work and connect with one another considering a purely local deploy of all applications. If you are installing the OCS applications on different networked servers, you will need to update their environment variables to point to the correct location for each of their connections.
+
+The preferred way to run each OCS application is using Docker. This way, you do not need to worry about installing the proper dependencies, or debugging strange interactions on your specific system. Each OCS application provides a Docker image that is available on [Docker Hub](https://hub.docker.com/u/observatorycontrolsystem), or you can build the Docker images yourself using the Dockerfiles in the OCS application repositories.
+
+One way to configure and run one or more Docker containers is by using Docker Compose. A set of services that are run via Docker Compose are specified using a Docker Compose file. A single Docker Compose file can technically be used to start up all the different applications of the OCS, but we would not recommend doing that for production deploys. One issue with starting up all components together is that if any component needs to be upgraded, then all of the components would have to be restarted. Another issue is that that all applications would need to run on a single machine. Instead we recommend logically splitting up all the applications into separate Docker Compose files. Template docker-compose.yml files are provided within each OCS application repository to help you get started.
+
+The Docker Compose files in each repository are set up to work and connect with one another given a purely local deploy of all applications. If you are installing the OCS applications on different networked servers, you will need to update their environment variables to point to the correct location for each of their connections. The Database name, user/password, and host/port should also be updated to the proper values for your setup:
 
 ```bash
 DB_NAME=my_db_name
@@ -39,13 +47,18 @@ DB_HOST=0.0.0.0
 DB_PORT=5432
 ```
 
-## Docker-Compose Templates
+When starting the different Docker Compose stacks, note that the Observation Portal requires a running ConfigDB to start up, the Adaptive Scheduler and Downtime Database requires both the Observation Portal and ConfigDB to be running, and the Science Archive requires the Observation Portal to be running if you are using the user accounts in the Observation Portal for user authentication in the Science Archive.
 
-The preferred way to run each OCS application is using Docker. This way, you do not need to worry about installing the proper dependencies, or debugging strange interactions on your specific system. Template docker-compose.yaml files are provided within each OCS application repo to help getting setup to run the application in production. The docker-compose files should be setup in the repo to work and connect with one another considering a purely local deploy of all applications. If you are installing the OCS applications on different networked servers, you will need to update their environment variables to point to the correct location for each of their connections.
+If you are new to Docker and Docker Compose, or if you would like to know more, check out the following resources:
+
+* [Information on how to install Docker](https://docs.docker.com/get-docker/)
+* [Highly recommended tutorial to get you started using Docker and get you familiar with it](https://docs.docker.com/get-started/)
+* [Brief overview of Docker Compose](https://docs.docker.com/compose/)
+
 
 ## Application Initial Setup
 
-The OCS applications are modular, so you can pick and choose which pieces you need in your setup. At a very minimum though, you will likely want to run the Observation Portal for its User accounts and authentication, and the Configuration Database to define the properties of your telescopes and instruments. The Configuration Database depends on the Observation Portal for account authentication, so you will want to start up the Observation Portal first and create at least one superuser account. This can be done by running the django management command from within the Observation Portal container:
+The OCS applications are modular, so you can pick and choose which pieces you need in your setup. At a very minimum though, you will likely want to run the Observation Portal for its User accounts and authentication, and the Configuration Database to define the properties of your telescopes and instruments. You will want to start by creating at least one superuser account on the Observation Portal. This can be done by running the django management command from within the Observation Portal container:
 
 ```bash
 python manage.py create_user --superuser --user test_user --password test_pass --token my-api-token
