@@ -7,6 +7,7 @@ title: Observation Portal Setup
 
 There are a things that must be added to a newly deployed Observation Portal to begin accepting Observation Requests. You should already have a superuser account created which you can use to log in to the admin interface of the Observation Portal. All steps are accomplished by clicking on the corresponding model in the `/admin/` endpoint and clicking the "Add a *" button in the upper right corner of that model's page.
 
+A prerequisite to using the Observation Portal is having the Configuration Database setup. If you have not yet set up your Configuration Database, stop this guide and first follow the instructions in the [ConfigDB Setup]({% link deployment/configdb_setup.md %}) section.
 
 ## Setup a Proposal
 
@@ -18,4 +19,4 @@ The first step to accepting Observation Requests is to set up a proposal with ti
 
 3. Add a Proposal Membership: Each Proposal should have at least one PI, who will be able manage the proposal's COIs, including adding and removing COIs and setting limits on how much of the proposal's allocated observing time they can use. To add this initial PI, select the **proposal** and **user** by ID using the search button, and then select a **role** of Principle Investigator. The **time limit** field is used to limit the specific user to a specific amount of time they are allowed to use on that proposal, with the defalt of -1 being no limit.
 
-All users that are members should now by able to submit Observing Requests specifying this newly created proposal. New user accounts can be requested by users by using the Observation Portal's registration form, and the superuser/administrator can approve those accounts. Those accounts will then need to be added onto a proposal to be able to submit Observation Requests and see the proposals data. A PI can also invite new members to join their proposal even if that user does not yet have an account in the Observation Portal - that user will receive an email letting they know that they have been invited to join, and that they can register an account.
+All users that are members should now by able to submit Observing Requests specifying this newly created proposal. New user accounts can be requested by users by using the Observation Portal's registration form, and then activated via that user's email. Those accounts will then need to be added onto a proposal to be able to submit Observation Requests and see the proposals data. A PI can also invite new members to join their proposal even if that user does not yet have an account in the Observation Portal - that user will receive an email letting they know that they have been invited to join, and that they can register an account.

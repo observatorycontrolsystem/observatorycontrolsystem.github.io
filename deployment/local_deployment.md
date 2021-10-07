@@ -26,8 +26,12 @@ docker run --name ocs-postgis -p 0.0.0.0:5432:5432 -e POSTGRES_PASSWORD=postgres
 After you have a postgreSQL instance running that you can connect to with a username and password, create a database for each OCS application you will use. These instructions assume the username and password are both set to the value `postgres`:
 
 ```bash
-createdb --host 0.0.0.0 -p5432 -Upostgres -W my_db_name
+createdb --host 127.0.0.1 -p5432 -Upostgres -W my_db_name
 ```
+
+{% include notification.html message="When running in production, it is recommended that database backups are created periodically. How frequently you create backups will depend on your needs. For example, creating one backup every day, and saving the last seven backups that were created would ensure that you would lose at most one day's worth of data, and that you could revert to any snapshot of the database taken within the last seven days. For information on how to create database backups, you can refer to the postgreSQL documentation [here](https://www.postgresql.org/docs/9.1/backup.html)."
+status="is-info"
+icon="fas fa-exclamation-triangle" %}
 
 ## Docker-Compose Templates
 
@@ -43,7 +47,7 @@ The Docker Compose files in each repository are set up to work and connect with 
 DB_NAME=my_db_name
 DB_USER=postgres
 DB_PASSWORD=postgres
-DB_HOST=0.0.0.0
+DB_HOST=127.0.0.1
 DB_PORT=5432
 ```
 
@@ -58,7 +62,7 @@ If you are new to Docker and Docker Compose, or if you would like to know more, 
 
 ## Application Initial Setup
 
-The OCS applications are modular, so you can pick and choose which pieces you need in your setup. At a very minimum though, you will likely want to run the Observation Portal for its User accounts and authentication, and the Configuration Database to define the properties of your telescopes and instruments. You will want to start by creating at least one superuser account on the Observation Portal. This can be done by running the django management command from within the Observation Portal container:
+The OCS applications are modular, so you can pick and choose which pieces you need in your setup. At a very minimum though, you will likely want to run the Observation Portal for its User accounts and authentication, and the Configuration Database to define the properties of your telescopes and instruments. You will want to start by creating at least one superuser account on the Observation Portal. This can be done by running the Observation Portal's custom `create_user` Django management command from within the Observation Portal container, updating the username and password as needed:
 
 ```bash
 python manage.py create_user --superuser --user test_user --password test_pass --token my-api-token
@@ -67,7 +71,7 @@ python manage.py create_user --superuser --user test_user --password test_pass -
 You can then also run a management command to create the ConfigDB credentials within the Observation Portal that will allow it to authenticate:
 
 ```bash
-python manage.py create_application --user test_user --name ConfigDB --client-id configdb_application_client_id --client-secret configdb_application_client_secret --redirect-uris http://0.0.0.0:7000/
+python manage.py create_application --user test_user --name ConfigDB --client-id configdb_application_client_id --client-secret configdb_application_client_secret --redirect-uris http://127.0.0.1:7000/
 ```
 
 And then in the Configuration Database docker-compose.yaml, update the environment variables to use your credentials as created above.
@@ -77,8 +81,8 @@ OAUTH_CLIENT_ID=configdb_application_client_id
 OAUTH_CLIENT_SECRET=configdb_application_client_secret
 ```
 
-{% include notification.html message="Note if you are running other applications that connect to the Observation Portal for authentication, such as the Science Archive or Downtime Database, you will need to run the create_application management command once for each of those applications as well to set up their credentials"
+{% include notification.html message="Note if you are running other applications that connect to the Observation Portal for authentication, such as the Science Archive or Downtime Database, you will need to run the create_application management command once for each of those applications as well to set up their credentials. They should each have a unique client ID and client secret"
 status="is-info"
 icon="fas fa-exclamation-triangle" %}
 
-You should then be ready to start the Configuration Database container and have access to it's admin interface through your Observation Portal account credentials. See the [ConfigDB Setup]({% link deployment/configdb_setup.md %}) section for information on how and in what order to create your telescope representation in the Configuration Database.
+You should then be ready to start the Configuration Database container and have access to its admin interface through your Observation Portal account credentials. See the [ConfigDB Setup]({% link deployment/configdb_setup.md %}) section for information on how and in what order to create your telescope representation in the Configuration Database.
