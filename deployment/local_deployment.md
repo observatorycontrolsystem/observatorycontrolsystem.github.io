@@ -21,7 +21,7 @@ To start a postgreSQL instance with postGIS on a machine with docker forwarding 
 docker run --name ocs-postgis -p 0.0.0.0:5432:5432 -e POSTGRES_PASSWORD=postgres -d postgis/postgis
 ```
 
-{% include notification.html message="By default, postgreSQL within a docker container will store its data in the docker container's filesystem. If you want to persist the database, should should either create a docker volume or volume mount the postgreSQL data directory in the container to a folder on your local filesystem when you start the container. Check out the [docker docs](https://docs.docker.com/storage/volumes/) for more information." %}
+{% include notification.html message="By default, postgreSQL within a docker container will store its data in the docker container's filesystem. If you want to persist the database, you should either create a docker volume or volume mount the postgreSQL data directory in the container to a folder on your local filesystem when you start the container. Check out the [docker docs](https://docs.docker.com/storage/volumes/) for more information." %}
 
 After you have a postgreSQL instance running that you can connect to with a username and password, create a database for each OCS application you will use. These instructions assume the username and password are both set to the value `postgres`:
 
@@ -34,8 +34,6 @@ status="is-info"
 icon="fas fa-exclamation-triangle" %}
 
 ## Docker-Compose Templates
-
-The preferred way to run each OCS application is using Docker. This way, you do not need to worry about installing the proper dependencies, or debugging strange interactions on your specific system. Template docker-compose.yaml files are provided within each OCS application repo to help getting setup to run the application in production. The docker-compose files should be setup in the repo to work and connect with one another considering a purely local deploy of all applications. If you are installing the OCS applications on different networked servers, you will need to update their environment variables to point to the correct location for each of their connections.
 
 The preferred way to run each OCS application is using Docker. This way, you do not need to worry about installing the proper dependencies, or debugging strange interactions on your specific system. Each OCS application provides a Docker image that is available on [Docker Hub](https://hub.docker.com/u/observatorycontrolsystem), or you can build the Docker images yourself using the Dockerfiles in the OCS application repositories.
 
