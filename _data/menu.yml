@@ -18,6 +18,13 @@
           link: /components/science_archive/
         - name: Downtime Database 
           link: /components/downtime_database/
+    - name: Custom Integration
+      link: /integration/
+      items:
+        - name: Telescope Control System Integration
+          link: /integration/tcs
+        - name: Custom Scheduler Integration
+          link: /integration/scheduler
     - name: Getting Started
       link: /getting_started/
     - name: Deployment
