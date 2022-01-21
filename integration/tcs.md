@@ -133,8 +133,6 @@ Once the observation portal detects this update, it will update the end time of 
 ## Setting Configuration(s) as NOT_ATTEMPTED
 When executing an observation’s configurations, the terminal NOT_ATTEMPTED state may be set to indicate that the configuration wasn’t attempted by the TCS. This API feature is particularly useful when the TCS wants to indicate to the observation portal and/or scheduler that an observation should be re-scheduled because one or more of its configurations weren’t able to be attempted. This is in contrast to the FAILED state, which indicates that an observatory issue caused the execution of the configuration to fail.
 
-In practice, if a TCS detects that no configurations have started within a certain amount of time (e.g. 10 minutes), it may decide to mark all configurations as NOT_ATTEMPTED and abort execution of the observation. This prevents the TCS from starting the observation late when there is no feasible way it can complete it in time.
-
 The portal treats observations with configuration states of NOT_ATTEMPTED as follows:
 
 **Observation State** | **Final Action by OCS**
@@ -145,6 +143,8 @@ All configurations marked as NOT_ATTEMPTED | Observation is marked as NOT_ATTEMP
 ### Rescheduling an Observation Started Late or Unable to Complete In Time
 
 One important use-case for the NOT_ATTEMPTED state is when the TCS is able to determine that a scheduled observation has been started late (excessive slew time, acquisition time, etc.) and will not be able to be completed before the observation’s window expires. If this is determined early during the execution of an observation, then the TCS can mark all configurations as NOT_ATTEMPTED, the Observation Portal will then mark the observation as NOT_ATTEMPTED, and a scheduler can immediately re-schedule the observation.
+
+In practice, if a TCS detects that no configurations have started within a certain amount of time (e.g. 10 minutes), it may decide to mark all configurations as NOT_ATTEMPTED and abort execution of the observation. This prevents the TCS from starting the observation late when there is no feasible way it can complete it in time.
 
 
 
