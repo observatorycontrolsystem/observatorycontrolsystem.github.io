@@ -126,8 +126,8 @@ For each observation:
 
 If: 
 1. The end time of the window is between the start and end time of the observation,
-2. The observation's end time is greater than the cutoff time 
-3. The observation is in PENDING or IN_PROGRESS state
+2. The observation's end time is greater than the cutoff time,
+3. The observation is in PENDING or IN_PROGRESS state,
 
 Then:
 1. Set the cutoff time to the observation end time.

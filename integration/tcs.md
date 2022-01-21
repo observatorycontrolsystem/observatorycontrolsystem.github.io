@@ -20,7 +20,7 @@ The TCS will need to execute each configuration from a request, updating as the 
 
 ![TCS Observation Flow](/assets/images/tcs_observation_flow.png)
 
-Within each configuration within the observation, there are details about it's configuration status. The TCS can update this status at any time during the course of the execution of the configuration using the `configuration_status` id.
+Within each configuration within the observation, there are details about its configuration status. The TCS can update this status at any time during the course of the execution of the configuration using the `configuration_status` id.
 
 We recommend updating the status of a given configuration:
 1. At the beginning of execution of a configuration
@@ -132,6 +132,8 @@ Once the observation portal detects this update, it will update the end time of 
 
 ## Setting Configuration(s) as NOT_ATTEMPTED
 When executing an observation’s configurations, the terminal NOT_ATTEMPTED state may be set to indicate that the configuration wasn’t attempted by the TCS. This API feature is particularly useful when the TCS wants to indicate to the observation portal and/or scheduler that an observation should be re-scheduled because one or more of its configurations weren’t able to be attempted. This is in contrast to the FAILED state, which indicates that an observatory issue caused the execution of the configuration to fail.
+
+In practice, if a TCS detects that no configurations have started within a certain amount of time (e.g. 10 minutes), it may decide to mark all configurations as NOT_ATTEMPTED and abort execution of the observation. This prevents the TCS from starting the observation late when there is no feasible way it can complete it in time.
 
 The portal treats observations with configuration states of NOT_ATTEMPTED as follows:
 
