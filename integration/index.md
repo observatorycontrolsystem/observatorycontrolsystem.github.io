@@ -9,7 +9,7 @@ This section describes the integration between existing or custom implementation
 
 ## Telescope Control System (TCS)
 
-A TCS provides the interface between the telescope subsystems and the Observation Portal. [This document]({% link integration/tcs.md %}) describes, in detail, the necessary interactions between the OCS Observation Portal and an observatory's TCS software.
+A TCS provides the interface between the telescope subsystems and the Observation Portal. [This document]({% link integration/tcs.md %}) describes in detail the necessary interactions between the OCS Observation Portal and an observatory's TCS software.
 
 Most observatories will have existing TCS software, so this document is written in order to present the capabilities that will need to be integrated into existing software so that it can communicate with the OCS Observation Portal.
 

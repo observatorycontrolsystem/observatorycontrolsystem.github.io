@@ -16,7 +16,7 @@ An observation is a scheduled request, or a request plus information about statu
 
 ![Observation Model](/assets/images/observation.png)
 
-The TCS will need to execute each configuration from a request, updating as the configuration progresses. A typical observation will look like this:
+The TCS will need to execute each configuration from a request, updating the observation portal as the configuration progresses. A typical observation will look like this:
 
 ![TCS Observation Flow](/assets/images/tcs_observation_flow.png)
 
@@ -36,15 +36,15 @@ A TCS can determine when to pull down a new schedule by utilizing the `/api/last
 GET /api/last_scheduled/?site=<site-code>
 ```
 
-By storing the last time a schedule was generated and frequently polling (e.g. once every minute or less) this endpoint, the TCS can determine when it’s time to pull down a new schedule. 
+By storing the last time a schedule was retrieved and frequently polling (e.g. once every minute or less) this endpoint, the TCS can determine when it’s time to pull down a new schedule. 
 
-{% include notification.html message="Warning: Frequently polling and pulling down a schedule of observations for multiple days can be expensive and prohibitively slow on remote connections - so we recommend utilizing the last_scheduled endpoint to avoid unnecessary bandwidth usage." status="is-warning" icon="fas fa-exclamation-triangle" %}
+{% include notification.html message="Warning: Frequently pulling down a schedule of observations for multiple days can be expensive and prohibitively slow on remote connections - so we recommend utilizing the last_scheduled endpoint to avoid unnecessary bandwidth usage." status="is-warning" icon="fas fa-exclamation-triangle" %}
 
 ### Pulling Down a Schedule
 
 To retrieve the scheduled list of observations from the observation portal, the TCS will need to query the `/api/schedule` endpoint. In order to narrow down the results, this endpoint can be optionally filtered by the following fields:
 * Site code
-* Start/End time - Recommended window is from the current time to however far into the future you wish to schedule your observations
+* Start/End time - Recommended window is from the current time to however far into the future your scheduler schedules its observations
 * Enclosure code
 * Telescope code
 

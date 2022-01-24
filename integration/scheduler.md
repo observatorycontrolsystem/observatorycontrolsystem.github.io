@@ -12,7 +12,7 @@ The role of the scheduler is to turn observation requests into scheduled observa
 At its most basic level, a scheduler should be able to: 
 * Retrieve all schedulable requests for a given time window
 * Take a set of observation requests and turn it into a set of observations to be executed on a telescope
-* Determine if a target is observable within the time window specified by a request, if it is, consider it for scheduling. The [OCS rise_set library](https://github.com/observatorycontrolsystem/rise_set) can be helpful in determining observability of a target from a given location.
+* Determine if a target is observable within the time window specified by a request, and if it is, consider it for scheduling. The [OCS rise_set library](https://github.com/observatorycontrolsystem/rise_set) can be helpful in determining observability of a target from a given location.
 * Create an observation for each scheduled request with a specific site, enclosure, telescope, instrument, and start and end time
 * If a schedule exists, cancel the existing schedule, excluding any running observations, so it can be replaced with a new set of observations. (HTTP POST `/api/observations/cancel`)
 * Submit the newly-generated observations (HTTP POST `/api/observations`)
@@ -32,7 +32,7 @@ Recall that an observation request has the following structure, and is defined a
 
 The job of the scheduler is to consider a set of observation requests and create a set of observations that fulfill the requests. There are a set of parameters that help to constrain the scheduling of an observation request:
 
-* **Location** - The location for an observation, which constrains the location an observation is to be performed. This is specified by a site, enclosure, telescope and instrument type. 
+* **Location** - The location for an observation, which constrains the location in which an observation is allowed to be performed. This is specified by a site, enclosure, telescope and instrument type. 
 * **Windows** - A set of acceptable time windows for an observation to be performed, as specified by the user
 * **Configurations** - A set of individual configurations for an observation to be performed. Among the constraints specified by the configurations are:
 * **Target** - The target to be observed
