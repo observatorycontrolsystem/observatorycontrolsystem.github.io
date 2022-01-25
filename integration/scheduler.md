@@ -112,26 +112,12 @@ Depending on an observatory’s TCS implementation, it may be important for the 
 
 One way to avoid this issue is to take into account the time range(s) of currently-executing observation(s). 
 
-To get the running observations from the observation portal:
+To determine if an observation is currently running, check if its start time is before the current time, and it's end time is greater than the projected end time of your scheduling run, and it is in a non-terminal state (PENDING or IN_PROGRESS). That observation's end time can then be used as the earliest start time for the next scheduled observation on that resource."
 
-Retrieve all PENDING, IN_PROGRESS, and COMPLETED observations between now and an end time for a given site/observatory/telescope. Usually the end time can be set to: 
+To retrieve all PENDING and IN_PROGRESS observations for a given start/end time:
 
 ```
-end time = now + length of time for normal scheduling run
+GET /api/observations/?starts_after=<start_date>&ends_before=<end_date>&state=PENDING&state=IN_PROGRESS
 ```
 
-Set an initial cutoff time equal to the end time of the window being considered
-
-For each observation:
-
-If: 
-1. The end time of the window is between the start and end time of the observation,
-2. The observation's end time is greater than the cutoff time,
-3. The observation is in PENDING or IN_PROGRESS state,
-
-Then:
-1. Set the cutoff time to the observation end time.
-
-Finally, the running observation will be that whose start time is less than the cutoff end time.
-
-An example of this is illustrated in the [Adaptive Scheduler](https://github.com/observatorycontrolsystem/adaptive_scheduler/blob/75ba3787e8cf95f5e26d056f0cfd4e466f2dcd0f/adaptive_scheduler/observations.py#L335) project.
+An example of this is illustrated in the [Adaptive Scheduler](https://github.com/observatorycontrolsystem/adaptive_scheduler/blob/main/adaptive_scheduler/observations.py#L335) project.
