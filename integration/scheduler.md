@@ -112,7 +112,7 @@ Depending on an observatory’s TCS implementation, it may be important for the 
 
 One way to avoid this issue is to take into account the time range(s) of currently-executing observation(s). 
 
-To determine if an observation is currently running, check if its start time is before the current time, and it's end time is greater than the projected end time of your scheduling run, and it is in a non-terminal state (PENDING or IN_PROGRESS). That observation's end time can then be used as the earliest start time for the next scheduled observation on that resource."
+To determine if an observation is currently running, check if its start time is before the current time, and its end time is greater than the projected end time of your scheduling run, and it is in a non-terminal state (PENDING or IN_PROGRESS). That observation's end time can then be used as the earliest start time for the next scheduled observation on that resource.
 
 To retrieve all PENDING and IN_PROGRESS observations for a given start/end time:
 
