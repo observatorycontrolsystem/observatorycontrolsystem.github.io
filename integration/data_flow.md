@@ -7,7 +7,7 @@ For users who wish to utilize the [Science Archive](https://github.com/observato
 * [OCS Ingester](https://github.com/observatorycontrolsystem/ingester) - commonly used as a library to simplify the ingestion process of observatory data products into the science archive. 
 * [OCS Science Archive](https://github.com/observatorycontrolsystem/science-archive) - A Django application which aids in the archival storage and retrieval of observatory data products.
 
-Both of these applications make use of a common library, the [OCS Archive Library](https://github.com/observatorycontrolsystem/ocs_archive). The OCS Archive library allows the OCS Ingester and Science Archive to share common configuration and reduces the need for duplicated code across the two projects.
+Both of these applications make use of a common library, the [OCS Archive Library](https://github.com/observatorycontrolsystem/ocs_archive). The OCS Archive library allows the OCS Ingester and Science Archive to share common configuration and reduces the need for duplicated code across the two projects - this shared code contains classes used to abstract data files and data storage backends. See the "Advanced Topics" for more information about customizing the behavior of the `ocs_archive` library.
 
 
 ## Configuration
