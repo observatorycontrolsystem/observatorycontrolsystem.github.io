@@ -62,7 +62,7 @@ For added robustness, it is good practice to integrate retry logic into the data
 * **NonFatalDoNotRetryError** - Exception that is raised when an error happens that should not be retried and is also not a fatal condition.
 * **DoNotRetryError** - Exception that is raised when an error happens that will undoubtedly repeat if called again. The task should not be retried.
 
-Handling these errors and retrying ingestion if appropriate will increase the robustness of an observatory's data product flow. Appropriate retry logic combined with queueing infrastructure
+Handling these errors and retrying ingestion if appropriate will increase the robustness of an observatory's data product flow. Appropriate retry logic combined with queueing infrastructure leads to a system which is fault-tolerant and able to recover easily from intermittent service outages.
 
 In Python, the [Tenacity](https://tenacity.readthedocs.io/en/latest/) package provides a set of function decorators that allow for various retry schemes.
 
