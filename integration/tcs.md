@@ -106,6 +106,11 @@ In the case of a configuration that has successfully completed, a HTTP PATCH pay
 * Time completed: The exact amount of time spent exposing, in seconds
     - Note: This is used to determine the percentage of actual exposure time taken versus what was requested, so that the “acceptability threshold” for a request is honored.
 
+## Data Product Archival
+Once a TCS has generated data products from an observation, archival storage may be accomplished by using the [OCS Science Archive](https://github.com/observatorycontrolsystem/science-archive), which provides utilities for storing file metadata and an HTTP REST API for querying archived data products. Ingestion of data products into a cloud filestore and file metadata into the OCS Science Archive is accomplished using the [OCS Ingester Library](https://github.com/observatorycontrolsystem/ingester/).
+
+For more information about integrating a TCS with the OCS Science Archive, see the [Observatory Data Flow]({% link integration/data_flow.md %}) document.
+
 ## Advanced Topics
 
 ### Updating the End Time of an Configuration or Observation
