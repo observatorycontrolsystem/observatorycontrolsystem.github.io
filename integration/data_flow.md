@@ -38,6 +38,38 @@ For more detailed information about the OCS Ingester and its capabilities, see t
 
 ## Advanced Topics
 
+### Overriding Classes in the `ocs_archive` Library
+
+The `ocs_archive` library provides base classes to represent observatory data products and filestore locations in order to provide a unified interface to various types of data products and filestore solutions.
+
+#### Data Products
+
+Within the `input` module of the `ocs_archive` library there exist classes to represent various different types of files such as FITS, GZipped TAR files, etc...
+
+If an observatory wishes to add their own file specification, they may do so by sub-classing the `DataFile` class and adding any customizations needed. For examples of this functionality, see the [implementation](https://github.com/observatorycontrolsystem/ocs_archive/blob/main/ocs_archive/input/fitsfile.py#L10) of the `FitsFile` class, which customizes the base `DataFile` class to work with FITS files. For Las Cumbres Observatory's purposes, we have further sub-classed the `FitsFile` class into an [`LCOFitsFile`](https://github.com/observatorycontrolsystem/ocs_archive/blob/main/ocs_archive/input/lcofitsfile.py#L16) to add additional functionality to meet the needs of our observatory. 
+
+Once a new file specification has been added, it should be added to the [`FileFactory` class](https://github.com/observatorycontrolsystem/ocs_archive/blob/main/ocs_archive/input/filefactory.py#L14), which is responsible for returning the appropriate `DataFile` subclass given a file's extension. It utilizes a mapping from file extension -> `DataFile` class to determine which class to construct, given an input file:
+
+```python
+EXTENSION_TO_FILE_CLASS = {
+    '.fits.fz': 'ocs_archive.input.lcofitsfile.LcoFitsFile',
+    '.fits': 'ocs_archive.input.fitsfile.FitsFile',
+    '.tar.gz': 'ocs_archive.input.tarwithfitsfile.TarWithFitsFile',
+    '.pdf': 'ocs_archive.input.file.DataFile'
+}
+```
+
+This mapping can be overridden using the `FILETYPE_MAPPING_OVERRIDES` environment variable if the default is not sufficient or needs to be changed.
+
+
+#### Filestore
+
+A set of classes which represent storage backends exists within the `storage` module of the `ocs_archive` library. 
+
+The base [`FileStore` class](https://github.com/observatorycontrolsystem/ocs_archive/blob/main/ocs_archive/storage/filestore.py#L20) is intended to represent a data product storage backend, and can be sub-classed and extended to work with many different storage solutions.
+
+For example, the [`S3Store`](https://github.com/observatorycontrolsystem/ocs_archive/blob/main/ocs_archive/storage/s3store.py#L23) contains customizations to the base `FileStore` class to allow observatory data products to be stored in [Amazon S3](https://aws.amazon.com/s3/). If an observatory needs to use a different cloud provider, then a new subclass can be created.
+
 ### Persistent Queue for Data Products
 
 _Note: This only applies when a separate process or application is responsible for ingesting data products from the TCS_
