@@ -25,6 +25,8 @@
           link: /integration/tcs
         - name: Custom Scheduler Integration
           link: /integration/scheduler
+        - name: Observatory Data Flow
+          link: /integration/data_flow
     - name: Getting Started
       link: /getting_started/
     - name: Deployment
