@@ -79,8 +79,9 @@ The `ocs_archive` also provides a FileStore class, [`FileSystemStore`](https://g
 
 ### Persistent Queue for Data Products
 
-_Note: This only applies when a separate process or application is responsible for ingesting data products from the TCS_
+{% include notification.html message="Note: This only applies when a separate process or application is responsible for ingesting data products from the TCS" status="is-info" icon="fas fa-exclamation-triangle" %}
 
+<br/>
 
 When a TCS generates data products to be ingested, it's helpful to use a queueing system such as [RabbitMQ](https://www.rabbitmq.com/) to keep track of images to be ingested. By utilizing a simple queuing architecture, if the application responsible for ingesting images ever experiences downtime, the TCS can still queue images to be ingested and the ingestion application will be able to catch up after its outage.
 
