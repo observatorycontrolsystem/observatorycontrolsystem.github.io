@@ -6,7 +6,7 @@ subtitle: Django Application that manages Data products that are stored in AWS S
 
 # Science Archive
 
-This Django application manages archival and retrieval of an observatory's data products. It features a REST API for retrieving metadata and download links for data products, and also for submitting metadata and data products for upload to a cloud or local filestore. For the complete list of filterable FITS header values, check out the [API specification]({% link api/science_archive.md %}).
+This Django application manages archival and retrieval of an observatory's data products. It features a REST API for retrieving metadata and download links for data products, and also for submitting metadata for data products that have been uplodaded to a cloud or local filestore. For the complete list of filterable FITS header values, check out the [API specification]({% link api/science_archive.md %}).
 
 ## Ingester Library
 

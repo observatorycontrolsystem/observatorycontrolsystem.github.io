@@ -1,3 +1,8 @@
+---
+layout: page
+title: Observatory Data Flow
+---
+
 # Observatory Data Flow
 
 For users who wish to utilize the [Science Archive](https://github.com/observatorycontrolsystem/science-archive) for data archival and retrieval, this document describes the components necessary.
@@ -20,7 +25,7 @@ In the execution of an observation, the observatory's Telescope Control System g
 
 ### A Simple Ingestion Scheme
 
-Once a TCS has created its final data products to be archived, the TCS may call out to the Ingester library directly. If the TCS is written in Python, the call is as simple as:
+Once a TCS has created its final data products to be archived, the TCS may call out to the Ingester library directly. If the TCS is written in Python, the call is as simple as setting the relevant environment variables for your filestore type and running:
 
 ```python
 from ocs_ingester.ingester import upload_file_and_ingest_to_archive
@@ -68,7 +73,9 @@ A set of classes which represent storage backends exists within the `storage` mo
 
 The base [`FileStore` class](https://github.com/observatorycontrolsystem/ocs_archive/blob/main/ocs_archive/storage/filestore.py#L20) is intended to represent a data product storage backend, and can be sub-classed and extended to work with many different storage solutions.
 
-For example, the [`S3Store`](https://github.com/observatorycontrolsystem/ocs_archive/blob/main/ocs_archive/storage/s3store.py#L23) contains customizations to the base `FileStore` class to allow observatory data products to be stored in [Amazon S3](https://aws.amazon.com/s3/). If an observatory needs to use a different cloud provider, then a new subclass can be created.
+For example, the [`S3Store`](https://github.com/observatorycontrolsystem/ocs_archive/blob/main/ocs_archive/storage/s3store.py#L23) contains customizations to the base `FileStore` class to allow observatory data products to be stored in [Amazon S3](https://aws.amazon.com/s3/). If an observatory needs to use a different cloud provider, then a new subclass can be created. 
+
+The `ocs_archive` also provides a FileStore class, [`FileSystemStore`](https://github.com/observatorycontrolsystem/ocs_archive/blob/main/ocs_archive/storage/filesystemstore.py#L8), made to work with network or local filestores, if an observatory does not wish to store their data with a cloud provider.
 
 ### Persistent Queue for Data Products
 
@@ -91,8 +98,9 @@ For added robustness, it is good practice to integrate retry logic into the data
 
 * **RetryError** - Exception that is raised when an error happens that can be retried.
 * **BackoffRetryError** - Exception that is raised when an error happens that can be retried with an expontential backoff. For example, networking latency errors that may succeed at a later time.
-* **NonFatalDoNotRetryError** - Exception that is raised when an error happens that should not be retried and is also not a fatal condition.
 * **DoNotRetryError** - Exception that is raised when an error happens that will undoubtedly repeat if called again. The task should not be retried.
+* **NonFatalDoNotRetryError** - Exception that is raised when an error happens that should not be retried and is also not a fatal condition. _This is different from the DoNotRetryError as it indicates the failure wasn't a fatal issue in the ingestion of an image (e.g. file doesn't exist on disk or Astropy exception raised), but rather indicates an error such as the file already existing in the filestore._
+
 
 Handling these errors and retrying ingestion if appropriate will increase the robustness of an observatory's data product flow. Appropriate retry logic combined with queueing infrastructure leads to a system which is fault-tolerant and able to recover easily from intermittent service outages.
 
