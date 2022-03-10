@@ -1,17 +1,17 @@
 ---
 layout: page
 title: Contributing
-# TODO: Publish this page when it is finalized, adding a link for it to the menubar
-published: false
 ---
 
 # Contributing
 
+### Contributor Conduct
+
 This is a project for the community, by the community!
 
-In order to foster a welcoming and inclusive open source community, please follow the guidelines in the
-[Contributor Code of Conduct](https://www.contributor-covenant.org/version/2/0/code_of_conduct/). By
-participating in the Observatory Control System community, you agree to abide by its terms.
+In order to foster a welcoming and inclusive open source community, please follow the guidelines in the 
+[Contributor Code of Conduct]({% link contributing/code_of_conduct.md %}). By participating in the Observatory Control System community, 
+you agree to abide by its terms.
 
 ### Testing
 
@@ -25,7 +25,7 @@ on a development machine. Instructions are provided in each project's README on 
 
 ### Code quality, guidelines, and style
 
-The projects that are all written in Python should use at least version 3.6. Stylistically,
+The projects that are all written in Python should use at least version 3.7. Stylistically,
 all projects should conform to the [PEP8](https://www.python.org/dev/peps/pep-0008/) standard.
 New code must pass a static code analysis check, which is automatically run when new code is pushed
 to GitHub.

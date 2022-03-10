@@ -5,6 +5,13 @@
   items:
     - name: Home
       link: /
+    - name: Contributing
+      link: /contributing/
+      items:
+        - name: Code of Conduct
+          link: /contributing/code_of_conduct/
+        - name: Contributor Guidelines
+          link: /contributing/contributor_guidelines/
     - name: Components
       link: /components/
       items:
