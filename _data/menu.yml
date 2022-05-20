@@ -5,13 +5,6 @@
   items:
     - name: Home
       link: /
-    - name: Contributing
-      link: /contributing/
-      items:
-        - name: Code of Conduct
-          link: /contributing/code_of_conduct/
-        - name: Contributor Guidelines
-          link: /contributing/contributor_guidelines/
     - name: Components
       link: /components/
       items:
@@ -25,15 +18,6 @@
           link: /components/science_archive/
         - name: Downtime Database 
           link: /components/downtime_database/
-    - name: Custom Integration
-      link: /integration/
-      items:
-        - name: Telescope Control System Integration
-          link: /integration/tcs/
-        - name: Custom Scheduler Integration
-          link: /integration/scheduler/
-        - name: Observatory Data Flow
-          link: /integration/data_flow/
     - name: Getting Started
       link: /getting_started/
     - name: Deployment
@@ -43,9 +27,25 @@
           link: /deployment/local_deployment/
         - name: Kubernetes Deployment
           link: /deployment/k8s_deployment/
-        - name: ConfigDB Setup
+        - name: ConfigDB Initial Setup
           link: /deployment/configdb_setup/
-        - name: Observation Portal Setup
+        - name: Observation Portal Initial Setup
           link: /deployment/obs_portal_setup/
+    - name: Custom Integration
+      link: /integration/
+      items:
+        - name: Telescope Control System Integration
+          link: /integration/tcs/
+        - name: Custom Scheduler Integration
+          link: /integration/scheduler/
+        - name: Observatory Data Flow
+          link: /integration/data_flow/
     - name: Topics of Interest
       link: /topics/
+    - name: Contributing
+      link: /contributing/
+      items:
+        - name: Code of Conduct
+          link: /contributing/code_of_conduct/
+        - name: Contributor Guidelines
+          link: /contributing/contributor_guidelines/

@@ -18,6 +18,7 @@ Astronomers can:
 
 * Submit requests to observe a target, track the states of those requests, and cancel
 requests if their needs have changed
+* View information about their past and current requests, proposals, and data products
 * Be notified once their observation is complete
 * Download their science data
 
@@ -25,12 +26,12 @@ Observatories can:
 
 * Automatically update the observing schedule for a telescope when a new request is submitted
 * Upload science data
-* Update the states of requests to keep users in the loop and to keep track of what still needs to be done
-* Manage users who are able to submit requests
+* Update the states of requests and observations to keep users in the loop and to keep track of what still needs to be done
+* Manage users and proposals who are able to submit requests
 
 Since these actions are all backed by APIs, they can be triggered programmatically and can easily be incorported into other web interfaces and software systems.
 
-See the [Components]({% link components/index.md %}) section for more information about the different components of the OCS, and the [Getting Started]({% link getting_started.md %}) guide for details on how to begin using it.
+See the [Components]({% link components/index.md %}) section for more information about the different components of the OCS, and the [Getting Started]({% link getting_started.md %}) guide for details on running an example OCS stack. When you are ready to setup your own observatory's OCS, visit the [Deployment]({% link deployment/index.md %}) section for detail on initial setup.
 
 #### Questions?
 

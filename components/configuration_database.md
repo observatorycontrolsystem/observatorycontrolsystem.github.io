@@ -14,7 +14,7 @@ This Django application manages details about the observatory's sites, enclosure
 
 - **Site** - The top level of the model. It contains a 3 character site code (often the closest airport code), and lat/lon/timezone information
 - **Enclosure** - A 4 character enclosure code representing a physical enclosure at a site
-- **Telescope** - Contains a 4 character telescope code as well as telescope specific information that aids in calculating target visibility, such as the horizon and hour angle limits and zenith blind spot of the telescope
+- **Telescope** - Contains a 4 character telescope code as well as telescope specific information that aids in calculating target visibility, such as the aperture, horizon and hour angle limits, and zenith blind spot of the telescope
 - **Instrument** - Specific instance of an **Instrument Type** on a **Telescope**, containing one or more science cameras and one autoguider camera and the current observational state
 - **Instrument Type** - Generically defines a class of instruments on one telescope aperture size. Contains a lot of details about overheads and properties relating to instruments of this type
 - **Instrument Category** - The broad category that this Instrument Type is part of. Usually two categories of Imager and Spectrograph is sufficient to cover most instrument types
@@ -47,7 +47,7 @@ Much like the generic mode groups, the optical element groups allow for defining
 
 ### Cerberus Validation Schema
 
-The **Instrument Type** and **Generic Mode** models currently contain a field called `validation_schema`, which accepts a [Cerberus validation schema](https://docs.python-cerberus.org/en/stable/schemas.html) as a JSON blob. This validation schema is applied to the section of the **Request** in which the mode or instrument_type applies. Validation schemas can be used to enfore that existing fields or extra parameters are specified, or even fill in default values for certain fields that are left blank in the **Request**. They can enforce the typing and valid ranges of fields as well. An example validation schema for a readout mode that sets the binning into the extra_params section is defined below.
+The **Instrument Type** and **Generic Mode** models currently contain a field called `validation_schema`, which accepts a [Cerberus validation schema](https://docs.python-cerberus.org/en/stable/schemas.html) as a JSON blob. This validation schema is applied to the section of the **Request** in which the mode or instrument_type applies. Validation schemas can be used to enfore that existing fields or extra parameters are specified, or even fill in default values for certain fields that are left blank in the **Request**. They can enforce the typing and valid ranges of fields as well. An example validation schema for a readout mode that sets the binning into the extra_params section with a value of 1 is defined below. It also allows the user to specify a value for `my_special_param` from the options of `ON`, `OFF`, and `MAYBE` with a default of `OFF`.
 
 ```json
 {
@@ -60,6 +60,13 @@ The **Instrument Type** and **Generic Mode** models currently contain a field ca
                     1
                 ],
                 "default": 1
+            },
+            "my_special_param": {
+                "type": "string",
+                "allowed": [
+                    "ON", "OFF", "MAYBE"
+                ],
+                "default": "OFF"
             }
         },
         "default": {},
