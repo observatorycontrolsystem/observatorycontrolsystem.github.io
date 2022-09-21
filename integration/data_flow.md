@@ -30,25 +30,25 @@ The [OCS Archive Library](https://github.com/observatorycontrolsystem/ocs_archiv
 | site_id | The configdb site code the data was taken at | SITE_ID_KEY | SITEID |
 | telescope_id | The configdb telescope code this data was taken at | TELESCOPE_ID_KEY | TELID |
 | instrument_id | The configdb instrument code this data was taken with | INSTRUMENT_ID_KEY | INSTRUME |
-| observation_id | The observation id for this piece of data | OBSERVATION_ID_KEY | BLKUID |
-| request_id | The request id for this piece of data | REQUEST_ID_KEY | REQNUM |
+| observation_id | The observation ID for this piece of data | OBSERVATION_ID_KEY | BLKUID |
+| request_id | The request ID for this piece of data | REQUEST_ID_KEY | REQNUM |
 | target_name | The user defined name of the target for this data | TARGET_NAME_KEY | OBJECT |
 | configuration_type | The configuration type of this observation | CONFIGURATION_TYPE_KEY | OBSTYPE |
-| proposal_id | The proposal id this data was requested under | PROPOSAL_ID_KEY | PROPID |
+| proposal_id | The proposal ID this data was requested under | PROPOSAL_ID_KEY | PROPID |
 | public_date | The date at which this data should be made publicly accessible | PUBLIC_DATE_KEY | L1PUBDAT |
 | primary_optical_element | The value of the primary optical element this data was taken with | PRIMARY_OPTICAL_ELEMENT_KEY | FILTER |
 | exposure_time | The exposure time this data was taken with | EXPOSURE_TIME_KEY | EXPTIME |
-| reductiuon level | The reduction level of this data (0 is considered raw). | REDUCTION_LEVEL_KEY | RLEVEL |
+| reduction level | The reduction level of this data (0 is considered raw). | REDUCTION_LEVEL_KEY | RLEVEL |
 
-{% include notification.html message="Note: If they do not exist already, these values must be added to the headers of your .fits files in your Telescope Control System when righting the files. Many of them can be pulled out of the Observation Portal's schedule observation json and put directly into the header of data taken for that observation." %}
+{% include notification.html message="Note: If they do not exist already, these values must be added to the headers of your .fits files in your Telescope Control System when writing the files. Many of them can be pulled out of the Observation Portal's schedule observation json and put directly into the header of data taken for that observation." %}
 
 There are also several environment variables for mapping .fits header keys that are used in the ingestion of data but not stored directly into the archive. These include:
 
 | Environment Variable | Description | Default Header Key |
 | ------------------- | ----------- | ------------------ |
-| OBSERVATION_END_TIME_KEY | The iso formatted observation end date | UTSTOP |
-| CONFIGURATION_ID_KEY | The coinfiguration id for this piece of data | MOLUID |
-| REQUESTGROUP_ID_KEY | The requestgroup id for this piece of data | TRACKNUM |
+| OBSERVATION_END_TIME_KEY | The ISO formatted observation end date | UTSTOP |
+| CONFIGURATION_ID_KEY | The configuration ID for this piece of data | MOLUID |
+| REQUESTGROUP_ID_KEY | The requestgroup ID for this piece of data | TRACKNUM |
 | CATALOG_TARGET_FRAME_KEY | The base filename of the catalog file for this target | L1IDCAT |
 | RADIUS_KEY | The FOV radius in arcseconds for a circular FOV, used to calculate WCS if specified | RADIUS |
 | RA_KEY | The FOV center RA for a circular FOV, used to calculate WCS if specified | RA |

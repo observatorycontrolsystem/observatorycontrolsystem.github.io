@@ -12,7 +12,7 @@ The Observation Portal is a Django application that manages users, proposals, ob
 
 ### Accounts
 
-This app provides the user accounts that are used for authentication between all OCS applications, using [oauth2](https://django-oauth-toolkit.readthedocs.io/en/latest/). It also provides a **Profile** model which includes additional account details. The Observation Portal is considered the authentication server, and it syncs up changes to it's user accounts and api tokens with each of the OCS client applications (ConfigDB, DowntimeDB and Science Archive). This way, users can use a single api token for authentication from all OCS applications.
+This app provides the user accounts that are used for authentication between all OCS applications, using [oauth2](https://django-oauth-toolkit.readthedocs.io/en/latest/). It also provides a **Profile** model which includes additional account details. The Observation Portal is considered the authentication server, and it syncs up changes to its user accounts and API tokens with each of the OCS client applications (ConfigDB, DowntimeDB and Science Archive). This way, users can use a single API token for authentication from all OCS applications.
 
 ### RequestGroups
 
