@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Custom Scheduler Integration
+title: Fully Custom Scheduler
 subtitle: Integrating a Custom Scheduler with the Observatory Control System
 ---
 

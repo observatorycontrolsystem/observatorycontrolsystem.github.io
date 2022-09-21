@@ -14,7 +14,7 @@ This Django application manages details about the observatory's sites, enclosure
 
 - **Site** - The top level of the model. It contains a 3 character site code (often the closest airport code), and lat/lon/timezone information
 - **Enclosure** - A 4 character enclosure code representing a physical enclosure at a site
-- **Telescope** - Contains a 4 character telescope code as well as telescope specific information that aids in calculating target visibility, such as the horizon and hour angle limits and zenith blind spot of the telescope
+- **Telescope** - Contains a 4 character telescope code as well as telescope specific information that aids in calculating target visibility, such as the horizon and hour angle limits and zenith blind spot of the telescope. Also contains a numerical aperture used to group telescopes of similar size.
 - **Instrument** - Specific instance of an **Instrument Type** on a **Telescope**, containing one or more science cameras and one autoguider camera and the current observational state
 - **Instrument Type** - Generically defines a class of instruments on one telescope aperture size. Contains a lot of details about overheads and properties relating to instruments of this type
 - **Instrument Category** - The broad category that this Instrument Type is part of. Usually two categories of Imager and Spectrograph is sufficient to cover most instrument types

@@ -12,6 +12,8 @@
           link: /contributing/code_of_conduct/
         - name: Contributor Guidelines
           link: /contributing/contributor_guidelines/
+    - name: Getting Started
+      link: /getting_started/
     - name: Components
       link: /components/
       items:
@@ -30,12 +32,12 @@
       items:
         - name: Telescope Control System Integration
           link: /integration/tcs/
-        - name: Custom Scheduler Integration
+        - name: Custom Scheduler Interfaces
+          link: /integration/scheduler_interfaces/
+        - name: Fully Custom Scheduler
           link: /integration/scheduler/
         - name: Observatory Data Flow
           link: /integration/data_flow/
-    - name: Getting Started
-      link: /getting_started/
     - name: Deployment
       link: /deployment/
       items:
@@ -47,5 +49,3 @@
           link: /deployment/configdb_setup/
         - name: Observation Portal Setup
           link: /deployment/obs_portal_setup/
-    - name: Topics of Interest
-      link: /topics/
