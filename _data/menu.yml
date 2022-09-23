@@ -45,7 +45,7 @@
           link: /deployment/local_deployment/
         - name: Kubernetes Deployment
           link: /deployment/k8s_deployment/
-        - name: ConfigDB Setup
+        - name: ConfigDB Initial Setup
           link: /deployment/configdb_setup/
-        - name: Observation Portal Setup
+        - name: Observation Portal Initial Setup
           link: /deployment/obs_portal_setup/

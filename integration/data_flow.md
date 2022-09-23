@@ -113,7 +113,7 @@ The base [`FileStore` class](https://github.com/observatorycontrolsystem/ocs_arc
 
 For example, the [`S3Store`](https://github.com/observatorycontrolsystem/ocs_archive/blob/main/ocs_archive/storage/s3store.py#L23) contains customizations to the base `FileStore` class to allow observatory data products to be stored in [Amazon S3](https://aws.amazon.com/s3/). If an observatory needs to use a different cloud provider, then a new subclass can be created. 
 
-The `ocs_archive` also provides a FileStore class, [`FileSystemStore`](https://github.com/observatorycontrolsystem/ocs_archive/blob/main/ocs_archive/storage/filesystemstore.py#L8), made to work with network or local filestores, if an observatory does not wish to store their data with a cloud provider.
+The `ocs_archive` also provides a FileStore class, [`FileSystemStore`](https://github.com/observatorycontrolsystem/ocs_archive/blob/main/ocs_archive/storage/filesystemstore.py#L8), made to work with network or local filestores, if an observatory does not wish to store their data with a cloud provider. Filesystem storage does not provide version history or time authenticated generated urls, so S3 Storage should be heavily preferred for production setups.
 
 ### Persistent Queue for Data Products
 

@@ -47,7 +47,7 @@ Much like the generic mode groups, the optical element groups allow for defining
 
 ### Cerberus Validation Schema
 
-The **Instrument Type** and **Generic Mode** models currently contain a field called `validation_schema`, which accepts a [Cerberus validation schema](https://docs.python-cerberus.org/en/stable/schemas.html) as a JSON blob. This validation schema is applied to the section of the **Request** in which the mode or instrument_type applies. Validation schemas can be used to enfore that existing fields or extra parameters are specified, or even fill in default values for certain fields that are left blank in the **Request**. They can enforce the typing and valid ranges of fields as well. An example validation schema for a readout mode that sets the binning into the extra_params section is defined below.
+The **Instrument Type** and **Generic Mode** models currently contain a field called `validation_schema`, which accepts a [Cerberus validation schema](https://docs.python-cerberus.org/en/stable/schemas.html) as a JSON blob. This validation schema is applied to the section of the **Request** in which the mode or instrument_type applies. Validation schemas can be used to enfore that existing fields or extra parameters are specified, or even fill in default values for certain fields that are left blank in the **Request**. They can enforce the typing and valid ranges of fields as well. An example validation schema for a readout mode that sets the binning into the extra_params section with a value of 1 is defined below. It also allows the user to specify a value for `my_special_param` from the options of `ON`, `OFF`, and `MAYBE` with a default of `OFF`.
 
 ```json
 {
@@ -60,6 +60,13 @@ The **Instrument Type** and **Generic Mode** models currently contain a field ca
                     1
                 ],
                 "default": 1
+            },
+            "my_special_param": {
+                "type": "string",
+                "allowed": [
+                    "ON", "OFF", "MAYBE"
+                ],
+                "default": "OFF"
             }
         },
         "default": {},
