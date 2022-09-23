@@ -19,6 +19,44 @@ Both of these applications make use of a common library, the [OCS Archive Librar
 
 Because both the OCS Science Archive and OCS Ingester depend on the OCS Archive Library, the two can share common configuration. Runtime configuration for the OCS Archive Library is set using environment variables - see [OCS Archive Configuration Documentation](https://github.com/observatorycontrolsystem/ocs_archive#configuration) for more detail about possible configuration options.
 
+### Setting up FITS Headers
+
+The [OCS Archive Library](https://github.com/observatorycontrolsystem/ocs_archive) has built in capacity to handle .fits files, but certain environment variables must be set to map between .fits header keys and concepts that are required by the Science Archive for data filtering. The table below lists the .fits header concepts expected, their environment variable to override the header key, and the default header key.
+
+| Archive model field | Description | Environment Variable | Default Header Key |
+| ------------------- | ----------- | ------------------- | ----------------- |
+| observation_date | The time of the observation in UTC | OBSERVATION_DATE_KEY | DATE-OBS |
+| observation_day  | The observing night in YYYYMMDD | OBSERVATION_DAY_KEY | DAY-OBS |
+| site_id | The configdb site code the data was taken at | SITE_ID_KEY | SITEID |
+| telescope_id | The configdb telescope code this data was taken at | TELESCOPE_ID_KEY | TELID |
+| instrument_id | The configdb instrument code this data was taken with | INSTRUMENT_ID_KEY | INSTRUME |
+| observation_id | The observation ID for this piece of data | OBSERVATION_ID_KEY | BLKUID |
+| request_id | The request ID for this piece of data | REQUEST_ID_KEY | REQNUM |
+| target_name | The user defined name of the target for this data | TARGET_NAME_KEY | OBJECT |
+| configuration_type | The configuration type of this observation | CONFIGURATION_TYPE_KEY | OBSTYPE |
+| proposal_id | The proposal ID this data was requested under | PROPOSAL_ID_KEY | PROPID |
+| public_date | The date at which this data should be made publicly accessible | PUBLIC_DATE_KEY | L1PUBDAT |
+| primary_optical_element | The value of the primary optical element this data was taken with | PRIMARY_OPTICAL_ELEMENT_KEY | FILTER |
+| exposure_time | The exposure time this data was taken with | EXPOSURE_TIME_KEY | EXPTIME |
+| reduction level | The reduction level of this data (0 is considered raw). | REDUCTION_LEVEL_KEY | RLEVEL |
+
+{% include notification.html message="Note: If they do not exist already, these values must be added to the headers of your .fits files in your Telescope Control System when writing the files. Many of them can be pulled out of the Observation Portal's schedule observation json and put directly into the header of data taken for that observation." %}
+
+There are also several environment variables for mapping .fits header keys that are used in the ingestion of data but not stored directly into the archive. These include:
+
+| Environment Variable | Description | Default Header Key |
+| ------------------- | ----------- | ------------------ |
+| OBSERVATION_END_TIME_KEY | The ISO formatted observation end date | UTSTOP |
+| CONFIGURATION_ID_KEY | The configuration ID for this piece of data | MOLUID |
+| REQUESTGROUP_ID_KEY | The requestgroup ID for this piece of data | TRACKNUM |
+| CATALOG_TARGET_FRAME_KEY | The base filename of the catalog file for this target | L1IDCAT |
+| RADIUS_KEY | The FOV radius in arcseconds for a circular FOV, used to calculate WCS if specified | RADIUS |
+| RA_KEY | The FOV center RA for a circular FOV, used to calculate WCS if specified | RA |
+| DEC_KEY | The FOV center DEC for a circular FOV, used to calculate WCS if specified | DEC |
+| RELATED_FRAME_KEYS | A comma delimited list of header keys to search for related frame base filenames in the header | L1IDBIAS,L1IDDARK,L1IDFLAT,L1IDSHUT,L1IDMASK,L1IDFRNG,L1IDCAT,L1IDARC,L1ID1D,L1ID2D,L1IDSUM,TARFILE,ORIGNAME,ARCFILE,FLATFILE,GUIDETAR |
+
+If there are more complicated mappings that you need to pull the data out of your .fits file, or if you have a different file type entirely, then please read the section below on [adding custom dataproduct classes](#advanced-topics).
+
 ## Telescope Control System Integration
 
 In the execution of an observation, the observatory's Telescope Control System generates data products. For these products to be archived and served to users or staff via an OCS Science Archive, they must be ingested.
@@ -75,7 +113,7 @@ The base [`FileStore` class](https://github.com/observatorycontrolsystem/ocs_arc
 
 For example, the [`S3Store`](https://github.com/observatorycontrolsystem/ocs_archive/blob/main/ocs_archive/storage/s3store.py#L23) contains customizations to the base `FileStore` class to allow observatory data products to be stored in [Amazon S3](https://aws.amazon.com/s3/). If an observatory needs to use a different cloud provider, then a new subclass can be created. 
 
-The `ocs_archive` also provides a FileStore class, [`FileSystemStore`](https://github.com/observatorycontrolsystem/ocs_archive/blob/main/ocs_archive/storage/filesystemstore.py#L8), made to work with network or local filestores, if an observatory does not wish to store their data with a cloud provider.
+The `ocs_archive` also provides a FileStore class, [`FileSystemStore`](https://github.com/observatorycontrolsystem/ocs_archive/blob/main/ocs_archive/storage/filesystemstore.py#L8), made to work with network or local filestores, if an observatory does not wish to store their data with a cloud provider. Filesystem storage does not provide version history or time authenticated generated urls, so S3 Storage should be heavily preferred for production setups.
 
 ### Persistent Queue for Data Products
 

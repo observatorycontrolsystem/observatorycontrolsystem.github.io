@@ -13,7 +13,11 @@ A TCS provides the interface between the telescope subsystems and the Observatio
 
 Most observatories will have existing TCS software, so this document is written in order to present the capabilities that will need to be integrated into existing software so that it can communicate with the OCS Observation Portal.
 
-## Custom Scheduler
+## Custom Scheduler Interfaces
+
+[This document]({% link integration/scheduler_interfaces.md %}) describes the telemetry/weather and seeing interfaces that are built into the OCS Adaptive Scheduler. It also describes how to override those interfaces with a custom implementation to connect to your observatory's existing data sources for telemetry/weather and seeing data.
+
+## Fully Custom Scheduler
 
 [This document]({% link integration/scheduler.md %}) describes the role of the observatory scheduling software and presents a general overview of the role of a scheduler - to schedule observations on observatory resources based on existing requests from observatory users or staff.
 
@@ -21,4 +25,4 @@ The OCS offers an [Adaptive Scheduler]({% link components/adaptive_scheduler.md 
 
 ## Observatory Data Flow
 
-[This document]({% link integration/data_flow.md %}) describes the components necessary for an observatory to adopt the OCS Science Archive for data archival and retrieval. It covers data product ingestion after an observation, and contains some advanced topics with helpful information to help observatories construct a robust data transfer and archival system.
+[This document]({% link integration/data_flow.md %}) describes the components necessary for an observatory to adopt the OCS Science Archive for data archival and retrieval. It covers configuration, data product ingestion after an observation, and contains some advanced topics with helpful information to help observatories construct a robust data transfer and archival system.

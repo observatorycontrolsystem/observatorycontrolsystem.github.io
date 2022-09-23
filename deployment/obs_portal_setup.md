@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Observation Portal Setup
+title: Observation Portal Initial Setup
 ---
 
 # Observation Portal Initial Setup

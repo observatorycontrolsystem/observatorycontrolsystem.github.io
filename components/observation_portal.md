@@ -12,7 +12,7 @@ The Observation Portal is a Django application that manages users, proposals, ob
 
 ### Accounts
 
-This app provides the user accounts that are used for authentication between all OCS applications, using [oauth2](https://django-oauth-toolkit.readthedocs.io/en/latest/). It also provides a **Profile** model which includes additional account details.
+This app provides the user accounts that are used for authentication between all OCS applications, using [oauth2](https://django-oauth-toolkit.readthedocs.io/en/latest/). It also provides a **Profile** model which includes additional account details. The Observation Portal is considered the authentication server, and it syncs up changes to its user accounts and API tokens with each of the OCS client applications (ConfigDB, DowntimeDB and Science Archive). This way, users can use a single API token for authentication from all OCS applications.
 
 ### RequestGroups
 
@@ -27,7 +27,7 @@ The OCS Request language is designed to be able to support a broad range of obse
 - **Instrument Configuration** - A set of exposures using certain instrument settings
 - **Guiding** - Parameters for the guiding of the observation
 - **Acquisition** - Parameters for the acquisition of the target
-- **Constraints** - A set of observing constraints that must be met to schedule the observation
+- **Constraints** - A set of observing constraints that must be met to schedule the observation. Currently this supports airmass, moon distance, and moon phase.
 - **Target** - The parameters describing the target, supporting ICRS, orbital elements, hour angle, or satellite coordinates
 
 More information about the specific fields expected in each section of the RequestGroup can be found in the [API specification]({% link api/downtime.md %}). Most fields have their values validated automatically from the acceptable values defined in the [Configuration Database (Configdb)]({% link components/configuration_database.md %}). There are several areas of the configuration which allow for user defined instrument properties that will be validated automatically, including things like modes and optical path elements.
@@ -90,6 +90,7 @@ SPECTRO_CATEGORY = 'SPECTRA'
 class MyRequestSerializer(RequestSerializer):
 
     def validate(self, data):
+        # This line is important to maintain existing validation
         validated_data = super().validate(data)
         spectral_configuration_types = set()
         for configuration in validated_data['configurations']:
