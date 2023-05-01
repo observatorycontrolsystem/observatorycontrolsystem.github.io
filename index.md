@@ -35,7 +35,9 @@ See the [Components]({% link components/index.md %}) section for more informatio
 
 #### Questions?
 
-You can reach out to us at [ocs@lco.global](mailto:ocs@lco.global).
+Please use github issues for any question or issue about a specific OCS application or library.
+
+You can also reach out to us at [ocs@lco.global](mailto:ocs@lco.global) for general questions.
 
 {% include github.html %}
 
