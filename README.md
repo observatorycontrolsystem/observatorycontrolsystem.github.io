@@ -8,4 +8,5 @@ development. The web page is deployed on any push to master.
 1. Make sure ruby is installed on your system (may need ruby-devel as well)
 2. Install gems: `gem install jekyll bundler bulma-clean-theme`
 3. Add the gems to bundler: `bundle init; bundle add jekyll bulma-clean-theme` (may need to add as root, and add `jekyll-feed` as well)
-4. Run `bundle exec jekyll serve --livereload` to start up a local version of the site.
+4. Comment out the `remote_theme:` line in `_config.yml` and add this line instead: `theme: bulma-clean-theme`. This change is only for local development, make sure to change it back before committing!
+5. Run `bundle exec jekyll serve --livereload` to start up a local version of the site.
