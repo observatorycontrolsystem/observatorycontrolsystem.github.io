@@ -5,7 +5,10 @@ title: ConfigDB Initial Setup
 
 # Configuration Database Initial Setup
 
-When you start up a Configuration Database for the first time, you will need to log in to its admin interface and fill in the initial representation of your observatory. Below we will walk through creating a single site, enclosure, and telescope with a single instrument on it, showing the order in which you should create these objects. From there, you should know how to add additional telescopes or instruments as well. All steps are accomplished by clicking on the corresponding model in the `/admin/` endpoint and clicking the "Add a *" button in the upper right corner of that model's page.
+When you start up a Configuration Database for the first time, you will need fill in the initial representation of your observatory. This can either be done by logging into the Admin interface and filling in data structures in order, or by submitting the data in order through the REST API.
+
+## Using the Admin Interface
+Below we will walk through creating a single site, enclosure, and telescope with a single instrument on it, showing the order in which you should create these objects. From there, you should know how to add additional telescopes or instruments as well. All steps are accomplished by clicking on the corresponding model in the `/admin/` endpoint and clicking the "Add a *" button in the upper right corner of that model's page.
 
 1. Add a Site: Bolded fields cannot be left blank, but the most important fields to fill in are the 3-character **code**, and the **latitude** and **longitude** in decimal degrees. The **code** can be any 3 letters, and each site should have a unique code. It might be convenient to use the 3-character code of the airport nearest the site, as long as two different sites would not have the same code. The **elevation**, **Timezone**/**Tz** and **restart** fields are not used by other OCS applications, so they are just there if you need them in your setup.
 
@@ -38,5 +41,66 @@ When you start up a Configuration Database for the first time, you will need to 
 15. Add an Instrument: You must specify a **code**, which will be used to specify the instrument an observation is scheduled to take data on. The only automatic **state** used is *SCHEDULABLE*, which means the instrument is available for scheduling. You must specify which **telescope** the instrument is on, and give it one or more **science cameras** that make up the instrument, as well as one **autoguider camera** (the autoguider camera can be one of the science cameras).
 
 This is a lengthy process for the initial setup, but once that is done you should only need to add more instruments or modes or tweak overhead times, which should take considerably less time.
+
+## Using the REST API
+ConfigDB can also be setup by POSTing data through the REST API in the proper order. ConfigDB is meant to be run internally (not publicly accessible) so by default it is setup so any authenticated account can POST to the API. The order in which data structures are submitted to the API should follow the same ordering as setting them up via the Admin interface described above. The actual payloads will mostly match the [Configdb API]({% link api/configdb.md %}), with some notable exceptions we will detail below.
+
+* **GenericModeGroups** can take *either* a list of `modes` each containing **GenericMode** data to create or use, *or* a list of `mode_ids` of already created **GenericMode** instances to link to it. You can either create the `modes` along with the group, or you can assign previously created `mode_ids`.
+```json
+{
+    "type": "readout",
+    "instrument_type": 21,
+    "modes": [{
+        "name": "Mode 1",
+        "code": "readout_mode_1",
+        "overhead": 24.0,
+        "schedulable": true,
+        "validation_schema": {}
+    }],
+    "mode_ids": [228, 17, 112],
+    "default": "readout_mode_1"
+}
+```
+
+* **OpticalElementGroups** can take *either* a list of `optical_elements` each containing **OpticalElement** data to create or use, *or* a list of `optical_element_ids` of already existing **OpticalElement** instances to link to it. You can either create the `optical_elements` along with the group, or you can assign previously created `optical_element_ids`.
+```json
+{
+    "name": "my filter group 1",
+    "type": "filters",
+    "element_change_overhead": 0.0,
+    "optical_elements": [{
+        "name": "Red",
+        "code": "r",
+        "schedulable": true,
+    }],
+    "optical_element_ids": [228, 17, 112],
+    "default": "r"
+}
+```
+
+* **InstrumentTypes** should have their generic `mode_types` set using the **GenericModeGroup** create API. **ConfigurationTypeProperties** can be set through this API but the **ConfigurationTypes** themselves should be created in advance. You can alternatively create the **InstrumentType** without any **ConfigurationTypeProperties** and then create those later through their create API.
+```json
+{
+    "name": "Imager Instrument 1",
+    "code": "Imager-01",
+    "fixed_overhead_per_exposure": 0.0,
+    "instrument_category": "IMAGE",
+    "observation_front_padding": 0.0,
+    "acquire_exposure_time": 0.0,
+    "default_configuration_type": "EXPOSE",
+    "default_acceptability_threshold": 90,
+    "config_front_padding": 0.0,
+    "allow_self_guiding": true,
+    "configuration_types": [{
+        "configuration_type": "EXPOSE",
+        "config_change_overhead": 0.0,
+        "schedulable": true,
+        "force_acquisition_off": true,
+        "requires_optical_elements": true,
+        "validation_schema": {}
+    }],
+    "validation_schema": {},
+}
+```
 
 See the [Observation Portal Setup]({% link deployment/obs_portal_setup.md %}) section for information on how to set up a new Observation Portal to begin accepting Observation Requests.
